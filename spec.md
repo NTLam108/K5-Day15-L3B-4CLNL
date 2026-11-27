@@ -27,11 +27,12 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
   - *Hỏng ở:* chính sách dài, nằm rải nhiều trang, không trả lời thẳng câu "đơn **của tôi** có đủ điều kiện không, tôi còn thiếu gì"; các yêu cầu quan trọng (video mở hàng, hạn bao nhiêu ngày, ảnh phải thấy rõ lỗi) thường chỉ được biết khi đã muộn.
   - *Vì sao chưa bỏ:* trả hàng ngay trong app vẫn là con đường duy nhất để lấy lại tiền; không có lựa chọn nào khác dễ hơn, nên người mua hoặc cố làm cho xong, hoặc bỏ cuộc.
 - **Pain:** Người mua Shopee **vừa nhận hàng lỗi** và muốn trả hàng / hoàn tiền, nhưng **không biết mình có đủ điều kiện không và cần chuẩn bị gì** (hạn, video mở hàng, ảnh, lý do chọn) vì chính sách dài và khó hiểu → **yêu cầu bị từ chối hoặc quá hạn**, mất tiền, hoặc bỏ cuộc không đòi nữa.
-- **Bằng chứng** (chi tiết: `evidence/summary.md`) — **chưa có số, đang thu thập**:
-  - Giả thuyết cần kiểm: (a) ≥50% người mua online từng nhận hàng lỗi / sai mà **không** gửi yêu cầu trả, lý do chính là "thủ tục rắc rối / không rõ điều kiện"; (b) trong số đã gửi, lý do bị từ chối phổ biến nhất là thiếu video mở hàng / ảnh không đủ / quá hạn.
-  - Nguồn: khảo sát Google Form ≥20 người · phỏng vấn 3–5 người từng bị từ chối trả hàng · bài than phiền trên Facebook / Voz / Reddit · trang chính sách Shopee.
-  - Số chính: __/__ (__%) người từng bỏ không trả hàng · __/__ người bị từ chối vì thiếu bằng chứng / quá hạn — **điền khi có kết quả khảo sát, không điền số ước đoán.**
-  - Kết luận: __ *(giả thuyết đúng / sai / phải đổi — ghi sau khi có số)*
+- **Bằng chứng** (chi tiết: `evidence/summary.md`) — nguồn đạt ngưỡng: **khảo sát n = 22** (21 sinh viên / học viên, 1 nhân viên văn phòng); phỏng vấn và đào bài than phiền đang làm.
+  - **Số chính:** **13/22 (59.1%)** từng nhận hàng lỗi / sai mẫu trong 6 tháng qua · **12/22 (54.5%)** không được hoàn tiền đầy đủ, trong đó **7/22 (31.8%)** bỏ qua không trả hàng và **3/22 (13.6%)** gửi nhưng bị từ chối / gặp rắc rối · **12/22 (54.5%)** mất **≥15 phút** để tìm hiểu / xử lý (6 người >30 phút).
+  - **Lý do** (câu hỏi nhiều lựa chọn, n = 20): **8/20 (40%)** không biết mình đủ điều kiện không / ngại đọc chính sách dài · **8/20 (40%)** giá trị nhỏ nên ngại làm · **7/20 (35%)** thiếu video khui hàng / ảnh chuẩn · **7/20 (35%)** quy trình rườm rà · **4/20 (20%)** quá hạn.
+  - **Trích dẫn:** *"Chính sách hoàn trả khá dài và rắc rối, không rõ trường hợp của mình có được duyệt không nên mất nhiều thời gian tìm hiểu, nhắn tin qua lại với shop và CSKH."* — phiếu khảo sát, Q7
+  - **Kết luận (tạm, chờ phỏng vấn):** giả thuyết **đúng một phần** — pain "không biết đủ điều kiện không, cần chuẩn bị gì" là lý do hàng đầu (40%) và thiếu bằng chứng / quá hạn chiếm thêm 35% / 20%; nhưng **"giá trị nhỏ nên ngại làm" cũng 40%**, là cách giải thích khác mà lát cắt này không giải quyết được.
+  - **Điều lệch đáng chú ý:** người dùng tin Shopee "bắt buộc phải có video quay liền mạch quá trình mở hộp" (trích dẫn #1 trong `evidence/summary.md`), trong khi chính sách hiện hành chỉ yêu cầu "video và/hoặc ảnh" khi nhận hàng và khi đóng gói (`data/shopee_policy.md` SP-25) → người dùng hiểu sai chính sách, đúng chỗ lát cắt cần trả lời.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 

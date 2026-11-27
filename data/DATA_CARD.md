@@ -16,8 +16,30 @@
 | Nhãn | thật (viết lại từ nguồn công khai) |
 | Giới hạn | Chỉ một trang: thiếu Điều Khoản Dịch Vụ Shopee Mall, bài thời hạn hoàn tiền, bài hoàn tiền không cần trả hàng · trang gốc **không có** chữ "video mở hàng" (chỉ yêu cầu video và/hoặc ảnh khi nhận và khi đóng gói, SP-25) · nội dung được đọc qua công cụ tải trang rồi viết lại — một thành viên cần đối chiếu lại với trang gốc trước CP3 · Shopee có thể sửa chính sách bất cứ lúc nào (SP-01) |
 
-**Data `synthetic` (nhóm tự sinh):** ghi cách sinh (prompt / script), seed, người kiểm, số dòng đã kiểm tay. Data tự dựng **không phải bằng chứng pain**.
+## Dataset 2 · Câu trả lời khảo sát người mua Shopee (nguồn `nguoi_dung` cho bộ câu thử)
 
-## Dataset 2 · [tên]
+| | |
+|---|---|
+| Dùng để làm gì | lấy tình huống và cách nói thật của người dùng để viết câu thử `source = nguoi_dung` trong `eval/benchmark.csv` · số liệu pain ở `evidence/summary.md` |
+| Từ đâu | Google Form nhóm tự làm (bộ câu hỏi: `evidence/survey/questions.md`), gửi nhóm lớp L3B và bạn bè 18–30 tuổi, mở 17:15 – chốt 18:10 ngày 27/11/2026 |
+| Xử lý những bước gì | chỉ đưa vào repo **số đã tổng hợp** và **trích dẫn Q7 đã bỏ tên** · **bỏ hẳn câu Q8** (SĐT / Zalo / Discord của người sẵn sàng phỏng vấn — dữ liệu cá nhân, không commit) · không thu email, tên, mã học viên · câu Q7 dùng làm câu thử thì viết lại cho khỏi lộ chi tiết nhận diện được người trả lời |
+| Số dòng / số đoạn | 22 phiếu · Q7 (trả lời tự do): __ câu có nội dung, 5 câu đã trích ở `evidence/summary.md` *(Vũ Xuân Hiếu điền số câu Q7)* |
+| Phiên bản / ngày lấy | xuất từ Google Form lúc 18:10 ngày 27/11/2026 · file xuất gốc giữ ngoài repo, người giữ: Vũ Xuân Hiếu |
+| Nhãn | thật |
+| Giới hạn | lệch về sinh viên (21/22), chỉ 1 nhân viên văn phòng · mẫu thuận tiện (lớp + bạn bè), không đại diện người mua Shopee nói chung · tự khai, không đối chiếu đơn hàng thật · câu hỏi lý do (Q4) có 20 người trả lời trong khi chỉ 13 người từng gặp hàng lỗi — cần kiểm lại mẫu số |
 
-…
+## Dataset 3 · Bài báo phản ánh tranh chấp trả hàng trên Shopee (nguồn `data_that` cho bộ câu thử)
+
+| | |
+|---|---|
+| Dùng để làm gì | tình huống thật (nhận sai hàng, thiếu video, quá hạn, "video đối video") để viết câu thử `source = data_that`, nhất là câu `kho` · đối chiếu chéo với khảo sát |
+| Từ đâu | 5 bài báo công khai: Tuổi Trẻ / Người Lao Động (2 bài), VnExpress, Dân Trí, Doanh Nhân VN — danh sách link ở `evidence/data-mining.md` mục 4 |
+| Xử lý những bước gì | tìm theo từ khoá `"Shopee" "trả hàng hoàn tiền" / "từ chối hoàn tiền" / "video mở hàng"` · đọc và tóm 1 dòng mỗi bài · chỉ lưu link + tóm tắt, không chép bài · đếm thủ công theo 2 tiêu chí (kết quả ở `evidence/data-mining.md` mục 3) |
+| Số dòng / số đoạn | 5 bài |
+| Phiên bản / ngày lấy | đọc ngày 27/11/2026 · năm đăng trải từ 2019 đến 2025 |
+| Nhãn | thật |
+| Giới hạn | n nhỏ, chọn theo vụ nổi cộm nên lệch về ca nặng · **phần lớn bài đăng trước chính sách hiện hành (hiệu lực 06/11/2026)** → tình huống dùng được, nhưng quy định nêu trong bài có thể đã cũ; `expected` của câu thử luôn chấm theo `data/shopee_policy.md`, không theo bài báo |
+
+## Data `synthetic` / nhóm tự viết
+
+Tính đến CP2 nhóm **không sinh dữ liệu bằng script hay model**. Câu thử `source = tu_viet` (chủ yếu câu `tu_choi` / tấn công) do Nguyễn Mạnh Quân tự viết, người kiểm: __ · số câu: 5/15 (theo `python run.py check` ngày 27/11). Câu tự viết **không phải bằng chứng pain**.
