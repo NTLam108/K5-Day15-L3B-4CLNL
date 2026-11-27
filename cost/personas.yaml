@@ -1,52 +1,52 @@
 # Mô phỏng chi phí khi dùng thật — điền ở guide bước 4.2.
-# Ôn lại: ngày 13, ngày 1, ngày 14 · lab ngày 13, lab ngày 14.
-# Mọi số phải có nguồn (data / phỏng vấn / khảo sát / quy mô khoá có nguồn) hoặc ghi rõ "(tự ước tính)".
+# Mọi số phải có nguồn (data / phỏng vấn / khảo sát / quy mô thị trường có nguồn) hoặc ghi rõ "(tự ước tính)".
 # Chạy: python run.py simulate --try   (10 phiên, kiểm khung — làm trước CP3)
-#       python run.py simulate         (đủ số phiên dưới đây — bản nộp CP4)
-# Thay mọi dòng "(ví dụ)" bằng số và nguồn của nhóm; simulate nhắc nếu còn sót.
+#       python run.py simulate         (≥50 phiên — bản nộp CP4)
 
 sessions: 50        # số phiên mô phỏng — bản nộp ≥50
 seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
 
-users:              # số người dùng thật nếu đưa vào dùng — 3 kịch bản, ở quy mô thật của sản phẩm
-                    # track A: khoá học · track B–F: người dùng của sản phẩm / nhóm nhắm tới, nguồn công khai có link
-  low: 300
-  base: 700
-  high: 1000
-  source: "(ví dụ) track A — thay bằng số của nhóm. Cơ sở: lớp L3 hơn 700 học viên (README hackathon); thấp, cao: (tự ước tính)"
+users:              # số người dùng thật nếu đưa vào dùng — 3 kịch bản (Track D: người mua Shopee Việt Nam gặp hàng lỗi/sai mẫu)
+  low: 5000
+  base: 20000
+  high: 50000
+  source: "Shopee Mall Việt Nam đạt 28 triệu người mua sắm tích cực (https://vneconomy.vn/shopee-tiep-tuc-tang-truong-voi-chien-luoc-nguoi-dung-lam-trung-tam.htm · xem 27/11/2026). Nhóm mục tiêu 18-30 tuổi gặp hàng lỗi/sai mẫu và sử dụng công cụ hỗ trợ: low = 5.000, base = 20.000 (~0.07% người mua tích cực), high = 50.000 (tự ước tính theo độ phủ công cụ cộng đồng)."
 
-personas:           # ≥3 kiểu người dùng; share cộng lại = 1
-  - name: dung_it
-    share: 0.5              # tỉ lệ người dùng kiểu này
-    uses_per_month: 4       # số phiên / người / tháng
-    turns_per_session: 1    # số lượt hỏi trong một phiên
-    source: "(ví dụ) phỏng vấn P1, P3 — thay bằng nguồn của nhóm"
-  - name: dung_vua
-    share: 0.3
-    uses_per_month: 10
-    turns_per_session: 3
-    source: "(ví dụ) khảo sát n = 24, câu 3"
-  - name: dung_nhieu
-    share: 0.2
-    uses_per_month: 20
-    turns_per_session: 5
-    source: "(ví dụ) data/preclass: đếm số lượt / người — cách đếm ở evidence/data-mining.md"
-# Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
-# Persona hỏi kiểu riêng: thêm vào persona đó
-#     types: [thuong, kho, tu_choi]
-# hoặc
-#     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
+personas:           # 3 kiểu người dùng khớp spec.md §2; share cộng lại = 1.0
+  - name: don_nho_bo_som
+    share: 0.45             # 7/24 (29.2%) bỏ qua + 4/24 (16.7%) nhắn shop/ngại thủ tục đơn nhỏ (~45.9% → làm tròn 0.45)
+    uses_per_month: 0.5     # 3 lần / 6 tháng (P1, spec.md §2)
+    turns_per_session: 1    # chỉ hỏi nhanh 1 lượt xem có đủ điều kiện/cần video không rồi quyết định
+    source: "khảo sát Q3 (n = 24, evidence/survey/results.csv) & phỏng vấn P1 (evidence/interviews/P1.md, spec.md §2)"
+  - name: trung_binh_may_mo
+    share: 0.40             # 10/24 (41.7%) tự gửi yêu cầu thành công nhưng mất công tra cứu (~0.40)
+    uses_per_month: 0.6     # 3-4 lần / 6 tháng (~0.5-0.7 lần/tháng, P3, spec.md §2)
+    turns_per_session: 2    # 1 lượt hỏi điều kiện + 1 lượt hỏi bổ sung cách chọn lý do / bằng chứng
+    source: "khảo sát Q3 (n = 24, evidence/survey/results.csv) & phỏng vấn P3 (evidence/interviews/P3.md, spec.md §2)"
+  - name: don_cao_lam_toi_cung
+    share: 0.15             # 3/24 (12.5%) tự gửi bị từ chối / tranh chấp làm tới cùng (~0.15)
+    uses_per_month: 0.5     # 3 lần / 6 tháng (P2, spec.md §2)
+    turns_per_session: 3    # hỏi điều kiện, hỏi cách chọn lý do, hỏi chi tiết video bổ sung khi bị shop từ chối
+    source: "khảo sát Q3 (n = 24, evidence/survey/results.csv) & phỏng vấn P2 (evidence/interviews/P2.md, spec.md §2)"
 
-prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
+prices:             # USD / 1 triệu token — giá công khai Google AI Studio (https://ai.google.dev/gemini-api/docs/pricing)
+  - model: gemini-2.5-flash-lite
+    input: 0.10
+    output: 0.40
+    source: "https://ai.google.dev/gemini-api/docs/pricing · xem 27/11/2026 (mức rẻ)"
+  - model: gemini-2.5-flash
+    input: 0.30
+    output: 2.50
+    source: "https://ai.google.dev/gemini-api/docs/pricing · xem 27/11/2026 (mức cân bằng)"
   - model: gemini-3.1-flash-lite
     input: 0.25
     output: 1.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+    source: "further-reading/model-prices.md (khung đề) · xem 27/11/2026"
   - model: gemini-4-hydrogen
     input: 1.50
     output: 7.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+    source: "further-reading/model-prices.md (khung đề, mức mạnh) · xem 27/11/2026"
 
-usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
-  rate:
-  source:
+usd_to_vnd:
+  rate: 25400
+  source: "tỷ giá tham khảo thị trường ~25.400 VND/USD (xem 27/11/2026)"
