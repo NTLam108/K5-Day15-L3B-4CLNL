@@ -1,10 +1,10 @@
-# AI SPEC — [Tên lát cắt] · Nhóm [tên nhóm] · Phòng [XXX] · Zone [X]
+# AI SPEC — Trợ lý trả hàng Shopee cho đơn hàng lỗi · Nhóm 4CLNL · Phòng __ · Zone __
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
 
-Track: [ ] A · [ ] B · [ ] C · [ ] D · [ ] E — bài toán: [đề gợi ý trong file track, hoặc bài toán nhóm tự mở rộng] __
-Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
+Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — bài toán: D2. Trợ lý đổi trả — thu hẹp: chỉ Shopee (shop thường), chỉ hàng lỗi / hư hỏng / sai mẫu
+Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dùng — dữ liệu chính là trang chính sách công khai của Shopee (`data/DATA_CARD.md`)
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
 - **Luồng hiện tại trên app Shopee** khi người mua nhận hàng lỗi / hư hỏng / sai mẫu *(viết theo trải nghiệm của nhóm — cần chụp ảnh từ tài khoản thành viên, che mã đơn và địa chỉ, chèn vào đây để xác nhận)*:
@@ -51,8 +51,13 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 - [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
-- **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả):
-- Không làm (≥3 điều):
+- **Lát cắt MỘT CÂU:** Một **người mua Shopee vừa nhận hàng lỗi / hư hỏng / sai mẫu** nhập mô tả vấn đề + số ngày từ lúc nhận + có/không có video, ảnh lúc nhận hàng → **AI quyết định đơn đủ / chưa đủ điều kiện trả hàng theo đúng điều khoản chính sách (trích mã `SP-xx`)** → người mua nhận **kết luận + danh sách việc còn thiếu + đoạn yêu cầu trả hàng soạn sẵn** để tự dán vào Shopee.
+- **Không làm:**
+  1. Không tự gửi yêu cầu trả hàng, không thao tác trên tài khoản Shopee của người mua — chỉ soạn nháp.
+  2. Không xử lý đơn **Shopee Mall** (điều khoản riêng, nhóm chưa có — `SP-03`) và các sàn khác (Lazada, TikTok Shop, Tiki…).
+  3. Không kiểm tra ảnh / video lỗi bằng thị giác máy — chỉ dựa vào lời mô tả của người mua.
+  4. Không tư vấn pháp lý, không soạn đơn kiện, không hỗ trợ khiếu nại ngoài hệ thống Shopee.
+  5. Không tư vấn "Trả hàng do Đổi ý" như một luồng chính — chỉ nhận ra và nói rõ đó không phải diện hàng lỗi.
 - **Sơ đồ** (Mermaid) — workflow cố định 6 bước, 1 lời gọi model ở quyết định trung tâm (bước 4):
 
   ```mermaid
@@ -91,12 +96,12 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
   | ④ Quyết định | model (lời gọi duy nhất) | — |
   | ⑤ Kiểm căn cứ | code | kết luận không có mã điều khoản hợp lệ → hạ về "không chắc" (G10) |
   | ⑥ Kết quả | người mua duyệt | quyết định cuối và nút gửi luôn do người mua bấm |
-- **Hình dạng:** [ ] workflow cố định · [ ] một agent · [ ] nhiều agent — 2 dòng lý do, và vì sao **không** chọn hình dạng phức tạp hơn:
+- **Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent — Các bước luôn giống nhau cho mọi câu hỏi (chặn phạm vi → tách thông tin → tra điều khoản → quyết định → kiểm căn cứ), chỉ có **một** chỗ cần phán đoán là đối chiếu tình huống với điều khoản, nên một lời gọi model là đủ. **Không** chọn agent vì không có bước nào cần AI tự chọn công cụ hay lặp nhiều vòng; agent làm khó kiểm soát và khó chặn câu tấn công, trong khi cái sai đắt nhất ở đây là kết luận sai không có căn cứ.
 - **AI dựa vào đâu** — mỗi công cụ (khớp `codebase/tools.py`):
 
   | Công cụ | Input | Output | Tác động ra ngoài? |
   |---|---|---|---|
-  |  |  |  |  |
+  | `tra_dieu_khoan` | danh sách nhãn chủ đề (vd `hang_loi`, `thoi_han`, `cod`) do bước ② tách từ lời người mua | danh sách điều khoản `{code, muc, text}` từ `data/shopee_policy.md`, luôn kèm `SP-11`, `SP-16`, `SP-25` | Không — chỉ đọc file |
 
 - **Mức tự động:** [ ] AI gợi ý, người quyết · [ ] AI tự làm khi chắc, chuyển người khi không · [ ] AI tự làm — lý do (sai thì ai chịu gì, sửa đắt hay rẻ):
 - **Chỗ chặn rủi ro** (rủi ro lớn nhất của lát cắt bị chặn ở đâu, bằng gì):
@@ -126,8 +131,8 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 - Bị đòi ngoài phạm vi (lớp 3): · Trường hợp đặc thù lĩnh vực (lớp 4):
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — __ câu (thuong __ · kho __ · tu_choi __) · metric: `eval/metric_spec.yaml` (__ metric)
-- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ __% câu qua, và __"
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 15 câu (thuong 3 · kho 9 · tu_choi 3) · metric: `eval/metric_spec.yaml` (3 metric: `ket_luan_dung`, `trich_dieu_khoan`, `tu_choi_dung`)
+- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua, và 100% câu tu_choi qua."
 - Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*

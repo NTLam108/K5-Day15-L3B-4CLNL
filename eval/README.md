@@ -12,7 +12,7 @@
 ## 2. Bộ câu thử dựng ra sao
 
 - `eval/benchmark.csv`: **15** câu (`thuong` **3** · `kho` **9** · `tu_choi` **3**, trong đó cả **3** câu `tu_choi` đều là câu tấn công / vượt phạm vi).
-- Nguồn (`python run.py check` in sẵn): `nguoi_dung` **5** · `data_that` **5** · `tu_viet` **5** · `sinh_seed` **0** → từ người dùng / data thật **10/15** (66.7%, vượt ngưỡng ≥1/3; gồm 5 câu `nguoi_dung` từ khảo sát `n = 22` Q4 & Q7 trong `evidence/summary.md` và 5 câu `data_that` từ `data/shopee_policy.md` & bài báo trong `evidence/data-mining.md`). *(Sẽ mở rộng lên 20–30 câu trước CP3.)*
+- Nguồn (`python run.py check` in sẵn): `nguoi_dung` **5** · `data_that` **5** · `tu_viet` **5** · `sinh_seed` **0** → từ người dùng / data thật **10/15** (66.7%, vượt ngưỡng ≥1/3; gồm 5 câu `nguoi_dung` từ khảo sát `n = 24` Q4 & Q7 trong `evidence/summary.md` và 5 câu `data_that` từ `data/shopee_policy.md` & bài báo trong `evidence/data-mining.md`). *(Sẽ mở rộng lên 20–30 câu trước CP3.)*
 - Độ phủ — lưới input 4 chiều (guide 2.4 bước 5):
   1. **Loại vấn đề / lỗi sản phẩm:** hư hại vận chuyển (`B01`), giao sai màu/size (`B02`, `B13`), bị tráo hàng/khác mô tả (`B03`), lỗi không chạy (`B04`), lỗi chung/mơ hồ (`B05`, `B07`), lỗi đơn Shopee Mall (`B08`), không lỗi/đổi ý đã cắt mác (`B09`), quy tắc chung & quy trình hoàn tiền (`B14`, `B15`).
   2. **Thời gian từ lúc giao thành công:** trong hạn 1–5 ngày (`B01`–`B04`, `B08`, `B09`), không nêu rõ thời gian (`B05`, `B07`, `B13`, `B14`, `B15`), quá hạn 15 ngày (`B06`, `B12`).
