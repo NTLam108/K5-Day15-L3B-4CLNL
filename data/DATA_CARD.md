@@ -42,4 +42,4 @@
 
 ## Data `synthetic` / nhóm tự viết
 
-Tính đến CP2 nhóm **không sinh dữ liệu bằng script hay model**. Câu thử `source = tu_viet` (chủ yếu câu `tu_choi` / tấn công) do Nguyễn Mạnh Quân tự viết, người kiểm: __ · số câu: 5/15 (theo `python run.py check` ngày 27/11). Câu tự viết **không phải bằng chứng pain**.
+Tính đến CP2 nhóm **không sinh dữ liệu bằng script hay model**. Câu thử `source = tu_viet` (chủ yếu câu `tu_choi` / tấn công) do Nguyễn Mạnh Quân tự viết, người kiểm: Nguyễn Đức Hiếu · số câu: 5/15 (theo `python run.py check` ngày 27/11). Câu tự viết **không phải bằng chứng pain**.
