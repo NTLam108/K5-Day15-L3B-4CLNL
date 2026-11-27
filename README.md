@@ -84,14 +84,20 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
+| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: `openai/gpt-oss-20b` qua Groq API (`codebase/ai.py`, `MODEL_PROVIDER=groq`); 1 lời gọi / câu hỏi ở bước ④. Lượt 1: `run-1@20261127-222913`, 18/24 đạt (75%) |
+| Công cụ `tra_dieu_khoan` + dữ liệu chính sách | **Thật** | Đọc `data/shopee_policy.md` — bản viết lại trang chính sách công khai của Shopee (hiệu lực 06/11/2026), 35 điều khoản `SP-01`…`SP-35` |
+| Chặn phạm vi (bước ①) và tách thông tin (bước ②) | **Thật**, luật viết tay | Luật từ khoá có dấu trong `codebase/agent.py`, không gọi model; chưa hiểu câu gõ không dấu |
+| Kiểm căn cứ (bước ⑤) | **Thật** | Code kiểm nhãn kết luận và mã `SP-xx`; thiếu căn cứ → hạ về "Không chắc cần CSKH" |
+| Thông tin đơn hàng của người mua | **Không có** | Hệ thống không truy cập đơn Shopee; chỉ dựa vào lời người mua tự kể |
+| Gửi yêu cầu trả hàng lên Shopee | **Không làm** | Chỉ soạn nháp; người mua tự gửi trên app |
 
 ## Dùng AI vào việc gì
 
 2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
-____
+- **Code và tài liệu:** Claude Code viết bản đầu `codebase/agent.py`, `codebase/tools.py`, `data/shopee_policy.md` (viết lại từ trang chính sách Shopee) và nháp nhiều mục `spec.md`; Codex nối API Groq trong `codebase/ai.py`. Nguyễn Đức Hiếu kiểm và chạy code, cả nhóm đọc lại spec; chính sách cần đối chiếu lại với trang gốc.
+- **Bộ câu thử và chấm:** Gemini (Antigravity) hỗ trợ chuẩn hoá `eval/benchmark.csv` và đối chiếu output lượt 1; Claude chấm thử 5 output CP2. Nguyễn Mạnh Quân đọc sửa từng câu thử và tự rà 24/24 câu trước khi chạy `score`; Nguyễn Đức Hiếu kiểm tay 5/5 câu chấm thử.
+- **Bằng chứng:** Gemini chỉ rà câu hỏi khảo sát / phỏng vấn và định dạng Markdown. Không dùng AI để tạo người được phỏng vấn, trích dẫn hay câu trả lời khảo sát — 24 phiếu và 3 phỏng vấn (P1–P3) là thật, do Vũ Xuân Hiếu thu.
 
 ## File mẫu — điền ở bước nào
 

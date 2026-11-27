@@ -7,17 +7,23 @@ Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — bài toán: D2. Trợ lý �
 Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dùng — dữ liệu chính là trang chính sách công khai của Shopee (`data/DATA_CARD.md`)
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
-- **Luồng hiện tại trên app Shopee** khi người mua nhận hàng lỗi / hư hỏng / sai mẫu *(viết theo trải nghiệm của nhóm — cần chụp ảnh từ tài khoản thành viên, che mã đơn và địa chỉ, chèn vào đây để xác nhận)*:
-  1. Mở Shopee → **Tôi → Đơn mua** → mở đơn vừa nhận.
-  2. Bấm **Trả hàng/Hoàn tiền** → chọn sản phẩm và chọn **lý do** trong danh sách có sẵn (hàng lỗi, sai mẫu, thiếu hàng…).
-  3. **Tải ảnh / video bằng chứng**, viết mô tả, chọn phương án (hoàn tiền, hoặc trả hàng và hoàn tiền) → gửi yêu cầu.
+- **Luồng hiện tại trên app Shopee** khi người mua nhận hàng lỗi / hư hỏng / sai mẫu *(chụp từ tài khoản của thành viên nhóm ngày 27/11/2026, đã che thông tin cá nhân; ảnh ở `docs/img/`)*:
+  1. Mở Shopee → tab **Tôi** (1.1) → mục Đơn mua, bấm **Xem lịch sử mua hàng** (1.2).
+  2. Trang **Đơn đã mua** → tab **Đã giao** → ở đơn vừa nhận bấm nút **Trả hàng/Hoàn tiền** (1.3). Nút nằm ngay cạnh "Đánh giá", không có gợi ý nào về điều kiện hay thời hạn.
+  3. Form **Yêu cầu Trả hàng/Hoàn tiền**: chọn **Lý do** (bắt buộc, vd "Người bán gửi sai hàng") → **Phương án** (vd "Trả hàng và Hoàn tiền") → xem **Số tiền hoàn lại** và **Hoàn tiền vào** (vd Ví ShopeePay) → viết **Mô tả** → **Thêm hình ảnh (tối đa 6, dưới 10MB)** và/hoặc **Thêm video (tối đa 1, dưới 100MB)** → **Gửi yêu cầu**. Dòng nhắc trong form chỉ ghi "hình ảnh … video … thấy rõ sản phẩm nhận được không đúng", kèm link "Hướng dẫn chi tiết" — form không bắt buộc video, khớp với chính sách "video và/hoặc ảnh" (SP-25).
+
+  | ① Vào lịch sử mua hàng | ② Chọn đơn → Trả hàng/Hoàn tiền | ③ Form yêu cầu |
+  |---|---|---|
+  | ![Tab Tôi → Xem lịch sử mua hàng](docs/img/1.png) | ![Đơn đã mua → Trả hàng/Hoàn tiền](docs/img/2.png) | ![Form Yêu cầu Trả hàng/Hoàn tiền](docs/img/3.png) |
+
   4. Người bán phản hồi: đồng ý, hoặc từ chối → người mua có thể khiếu nại để Shopee xem xét.
   5. Nếu được chấp nhận: gửi trả hàng qua đơn vị vận chuyển → nhận hoàn tiền.
   - **Điểm vướng:** người mua chỉ đọc chính sách (hạn trả hàng, có cần video mở hàng không, ảnh thế nào là đủ, chọn lý do nào) **sau khi** đã gặp lỗi, và thường chỉ biết mình thiếu gì khi yêu cầu đã bị từ chối hoặc đã quá hạn.
 - **Công cụ đang được dùng cho việc này:**
   - Trang **Chính sách Trả hàng/Hoàn tiền** và **Trung tâm trợ giúp** của Shopee — nguồn: trang công khai của Shopee *(nhóm sẽ ghi link + ngày truy cập vào `data/DATA_CARD.md`)*.
-  - **Chat với Shopee / trợ lý ảo trong app** — trả lời có đối chiếu đúng tình huống của từng đơn hay chỉ dẫn link chính sách: **chưa kiểm**.
-  - Ngoài Shopee: tìm Google, hỏi bạn bè, hỏi trong group Facebook mua sắm — **chưa kiểm** mức độ phổ biến (sẽ hỏi trong khảo sát).
+  - **"Hỏi trợ lý AI" trong app Shopee** (ô tìm kiếm của Trung tâm hỗ trợ) — **đã thử 27/11/2026, 3 câu hỏi** (ảnh `docs/img/chat1–3.jpg`): bot tìm một bài viết trợ giúp rồi dán nội dung bài đó, **không đối chiếu tình huống của từng đơn**. Câu "lỗi 3 ngày, không quay video mở hộp" → lần 1 chỉ đưa link bài về đổi sản phẩm, lần 2 trả lời về danh mục sản phẩm hạn chế trả hàng do đổi ý; câu "COD chưa liên kết ví" → trả lời cách đóng gói hàng hoàn trả. Trong phần trả lời chụp được, không lần nào trả lời thẳng "được hay không, còn thiếu gì" (ảnh cắt ở cuối màn hình; mới thử 3 câu, 1 phiên).
+  - **Chat với nhân viên CSKH Shopee**: có người thật xử lý tranh chấp (P2) — chưa thử hỏi điều kiện trước khi gửi yêu cầu.
+  - Ngoài Shopee: **cả 3 người phỏng vấn** đều bỏ qua Trung tâm trợ giúp, chuyển sang hỏi bạn cùng phòng, đọc review dưới sản phẩm (P1), tra group Facebook mua sắm (P2, P3) và clip TikTok (P2, P3); khảo sát Q7: *"Thà đi hỏi trực tiếp những người khác rành về Shopee trên group Facebook còn nhanh hơn"* — nguồn: `evidence/interviews/P1–P3.md`, `evidence/summary.md` mục 4. Tỉ lệ trên toàn bộ người khảo sát: **chưa đo** (khảo sát không có câu này).
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 - **Người dùng chính:** sinh viên / nhân viên văn phòng 18–30 tuổi, mua hàng trên Shopee vài lần mỗi tháng, **vừa nhận một đơn bị lỗi, hư hỏng hoặc sai mẫu**, chưa từng (hoặc hiếm khi) tự gửi yêu cầu trả hàng, và không có thời gian đọc hết trang chính sách.
@@ -60,7 +66,12 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
   - *Trung bình, tự mày mò rồi thành công* (như P3): ~0.5–0.7 lần / tháng, mỗi lần 35–40 phút.
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
-- [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
+- **Trang Chính sách Trả hàng / Hoàn tiền + Trung tâm trợ giúp Shopee** (nhóm đã đọc, viết lại thành `data/shopee_policy.md`): **đáng học** — nguồn chính thức, có ngày hiệu lực, con số rõ (15 ngày, 24 giờ, 02 ngày lịch) · **đáng né** — viết cho mọi trường hợp, 12 mục dài, không trả lời câu "đơn **của tôi** có được không, tôi còn thiếu gì"; P2: *"Hướng dẫn chính thức trên app Shopee viết rất chung chung… đọc xong vẫn không biết ca cụ thể của mình cần bổ sung clip góc quay như thế nào"* · **mình khác** — dùng đúng nguồn này nhưng đối chiếu theo tình huống người mua kể, chỉ trích những điều khoản liên quan, kèm mã `SP-xx` để tự mở lại.
+- **"Hỏi trợ lý AI" trong app Shopee** — sản phẩm gần nhất với lát cắt này (nhóm thử 3 câu ngày 27/11/2026, ảnh `docs/img/chat1–3.jpg`): **đáng học** — nằm ngay trong app, trả lời từ bài viết chính thức của Shopee và luôn đưa link bài nguồn; có nút "Hài lòng / Không hài lòng" để thu phản hồi · **đáng né** — chỉ tìm bài rồi dán nội dung, **tìm sai bài** cho câu hỏi theo tình huống: hỏi "lỗi 3 ngày, không quay video mở hộp" thì nhận bài về sản phẩm hạn chế trả hàng do đổi ý; hỏi "COD chưa liên kết ví" thì nhận hướng dẫn đóng gói; trong phần chụp được, không lần nào trả lời "được hay không, còn thiếu gì" · **mình khác** — tách thông tin của đơn (số ngày, loại lỗi, có video / ảnh không) rồi mới tra điều khoản, kết luận bằng một trong 4 nhãn, trích đúng mã `SP-xx`, nói rõ việc còn thiếu (đúng 2 câu đã thử chính là câu thử B05, B04 của nhóm).
+- **Chat với nhân viên CSKH Shopee**: **đáng học** — có người thật xử lý khi tranh chấp (P2 gửi video bổ sung qua chat CSKH mới được hoàn 100%) · **đáng né** — P2 bị đẩy sang "Shopee đang xem xét" treo nhiều ngày, không biết phải bổ sung gì · **mình khác** — không thay CSKH và không truy cập đơn hàng; dùng **trước khi** gửi yêu cầu để người mua chuẩn bị đúng ngay lần đầu, và chỉ sang CSKH khi chính sách không đủ căn cứ.
+- **Nhóm Facebook mua sắm** (P2, P3 nêu tên "Nghiện Shopee", "Kinh nghiệm mua hàng Shopee"; khảo sát Q7: *"Thà đi hỏi trực tiếp những người khác rành về Shopee trên group Facebook còn nhanh hơn"*): **đáng học** — trả lời theo đúng tình huống cụ thể, lời lẽ đời thường, nhanh · **đáng né** — không có nguồn, dễ lan truyền hiểu sai hoặc quy định cũ, vd niềm tin "bắt buộc video mở hàng liền mạch từ lúc nguyên tem" (P1, khảo sát Q7) trong khi chính sách hiện hành chỉ đòi "video và/hoặc ảnh" (SP-25) · **mình khác** — giữ cách trả lời theo tình huống, nhưng mỗi ý đều có mã điều khoản hiện hành; không chắc thì nói không chắc.
+- **Clip hướng dẫn trên TikTok** (P2, P3; P3: *"Xem 1–2 clip trên TikTok mất có 3 phút là biết đường làm"*): **đáng học** — dạng checklist thao tác ngắn: bấm nút nào, quay video thế nào · **đáng né** — hướng dẫn chung cho mọi đơn, không biết làm theo chính sách bản nào, không trả lời được ca lệch (đã lỡ bóc hộp, quá hạn, COD chưa liên kết ví) · **mình khác** — đưa checklist **riêng cho đơn đó** ("việc cần làm / còn thiếu") và đoạn yêu cầu soạn sẵn — đúng thứ P2, P3 nói muốn có ngay từ đầu.
+- **Rút ra cho thiết kế (§4):** khuôn trả lời "KẾT LUẬN → LÝ DO có mã → VIỆC CẦN LÀM → NHÁP" lấy cái nhanh, theo tình huống của group / TikTok, cộng với nguồn chính thức của trang chính sách; phần CSKH giữ cho ca không có căn cứ.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU:** Một **người mua Shopee vừa nhận hàng lỗi / hư hỏng / sai mẫu** nhập mô tả vấn đề + số ngày từ lúc nhận + có/không có video, ảnh lúc nhận hàng → **AI quyết định đơn đủ / chưa đủ điều kiện trả hàng theo đúng điều khoản chính sách (trích mã `SP-xx`)** → người mua nhận **kết luận + danh sách việc còn thiếu + đoạn yêu cầu trả hàng soạn sẵn** để tự dán vào Shopee.
@@ -132,7 +143,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
   | Chặn bằng luật trước khi tới model | Bước ① `chan_pham_vi`: sàn khác, tấn công, làm giả bằng chứng, tư vấn pháp lý bị từ chối bằng code, gọi model 0 lần (câu thử B10, B11, B12). |
 
 - **Phần nào còn giả:**
-  - **Model:** đang chạy **chế độ giả** (`MODEL_PROVIDER` chưa điền) → mọi câu trong phạm vi đều bị bước ⑤ hạ về "Không chắc cần CSKH". Nối model thật trước CP3.
+  - **Model:** đã nối **thật** — `openai/gpt-oss-20b` qua Groq (`codebase/ai.py`), dùng cho lượt 1. Máy chưa điền `.env` thì vẫn chạy chế độ giả (mọi câu trong phạm vi bị bước ⑤ hạ về "Không chắc cần CSKH").
   - **Bước ① và ②** là luật từ khoá có dấu, viết tay — chưa hiểu câu gõ không dấu hay cách nói lạ.
   - **Dữ liệu chính sách** là thật nhưng là bản viết lại của một trang (`data/shopee_policy.md`), cần đối chiếu lại với trang gốc.
   - Không có dữ liệu đơn hàng thật: hệ thống chỉ biết những gì người mua tự kể.
@@ -164,9 +175,9 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - **Trường hợp đặc thù lĩnh vực (lớp 4)** (vd B04 COD chưa liên kết, B05 không quay video từ lúc nguyên tem, B06 quá 15 ngày): kết luận đúng theo điều khoản, **nói rõ điều người mua đang hiểu sai** (vd chính sách không đòi "video mở hàng", SP-25) và **việc còn làm được ngay** (liên kết ví trước khi gửi; chụp ảnh lỗi hiện có; liên hệ CSKH khi quá hạn), không hứa chắc kết quả.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 15 câu (thuong 3 · kho 9 · tu_choi 3) · metric: `eval/metric_spec.yaml` (3 metric: `ket_luan_dung`, `trich_dieu_khoan`, `tu_choi_dung`)
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 13 · tu_choi 3; 19/24 từ người dùng / data thật), khoá từ lượt 1 · metric: `eval/metric_spec.yaml` (3 metric: `ket_luan_dung`, `trich_dieu_khoan`, `tu_choi_dung`)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua, và 100% câu tu_choi qua."
-- Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **18/24 (75%)** — thuong 7/8 (88%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **chưa đạt chuẩn** (tu_choi đủ 100% nhưng tổng 75% < 80%) · lượt 2: chưa chạy (trước CP4) — run ID: `run-1@20261127-222913` (`openai/gpt-oss-20b`, Groq) · lượt 2: chưa có → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -188,7 +199,12 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
+| 27/11/2026 22:08 (GMT+7) | Mở rộng `eval/benchmark.csv` từ 15 lên 24 câu (thêm B16–B24: 5 `thuong`, 4 `kho`) rồi khoá trước lượt 1; B01–B15 giữ nguyên | CP3 yêu cầu 20–30 câu; câu mới lấy từ phỏng vấn P1–P3 / khảo sát (vd ốp lưng 65k, cáp sạc 85k, bàn phím 600k) và chính sách thực phẩm tươi sống 24 giờ (SP-12) |
 | 27/11/2026 22:28 (GMT+7) | Nối Groq, chuẩn hóa dấu gạch trong mã trích dẫn; đối chiếu và làm rõ SP-22, SP-31 với trang nguồn | Lượt thử B01 dùng dấu gạch Unicode khiến kiểm căn cứ không nhận mã; trang nguồn cho phép thời hạn phản hồi khác và quy định rõ quyền quyết định của Shopee. |
+| 27/11/2026 22:36 (GMT+7) | Chạy **lượt 1** `run-1@20261127-222913` (model `openai/gpt-oss-20b`, Groq) trên bộ 24 câu đã khoá → `eval/run-1.csv`, `traces/run-1.jsonl`; 0 lỗi kỹ thuật | Lượt chạy chuẩn đầu tiên với model thật, bắt buộc trước CP3 |
+| 27/11/2026 22:50 (GMT+7) | Điền `cost/personas.yaml`: 3 persona, số người dùng Shopee Việt Nam 3 kịch bản, giá model — thay hết dòng "(ví dụ)" | Chuẩn bị `simulate --try` cho CP3; persona lấy theo 3 kiểu người dùng ở §2 (P1, P2, P3) |
+| 27/11/2026 23:04 (GMT+7) | Chấm cột `pass` lượt 1 → **18/24 (75%)**: thuong 7/8 · kho 8/13 · tu_choi 3/3 — **chưa đạt chuẩn** (< 80%); ghi `eval/report.md`, `eval/README.md` mục 5; `data/DATA_CARD.md` ghi bộ câu thử khoá ở `b5f9ad8` và 5 câu `tu_viet` | Chỉ sửa cột `pass`, `ghi_chu` trong `run-1.csv` (đã đối chiếu: các cột khác giữ nguyên). Nhóm lỗi lớn nhất là câu `kho` (62%) → mục tiêu cải tiến trước lượt 2 |
+| 27/11/2026 (sau 23:04) | `spec.md`: điền §3 Giải pháp tương tự (trang chính sách, "Hỏi trợ lý AI" của Shopee — đã thử 3 câu, ảnh `docs/img/chat1–3.jpg` —, chat CSKH, group Facebook, TikTok); §0 viết lại bước 1–3 theo ảnh chụp app thật (`docs/img/`) và thay "chưa kiểm" bằng bằng chứng từ P1–P3 về cách người mua đang hỏi ngoài app; §4 sửa "Phần nào còn giả" (model đã nối thật); §7 ghi số câu thử 24 và kết quả lượt 1. `README.md`: tên model, bảng thật / giả, "Dùng AI vào việc gì"; `docs/ai-usage.md`: khai phần Claude Code viết | Cập nhật theo lượt 1 và phỏng vấn đã có; §3 là mục điền lần đầu cho CP3. **Không** sửa chuẩn "đạt" §7 và `eval/metric_spec.yaml` |
 |  |  |  |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
