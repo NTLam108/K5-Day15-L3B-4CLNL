@@ -158,6 +158,8 @@ def answer(text: str) -> dict:
             % (can_cu, info["so_ngay"] if info["so_ngay"] is not None else "chưa rõ",
                info["bang_chung"] or "chưa rõ", "; ".join(info["thieu"]) or "không", text))
     reply = call_model(SYSTEM, user)["text"].strip()
+    # Một số model dùng dấu gạch nối Unicode trong mã điều khoản.
+    reply = re.sub(r"(?i)\bSP[\u2010-\u2015\u2212](\d{2})\b", r"SP-\1", reply)
 
     # ⑤
     nhan, ok, van_de = kiem_can_cu(reply)

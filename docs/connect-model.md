@@ -8,6 +8,12 @@ Ba ví dụ dưới đây (OpenAI, Claude, Ollama) **đã chạy với key thậ
 
 ## 1. Điền `.env`
 
+Repo đã hỗ trợ Groq bằng thư viện chuẩn. Đặt `MODEL_PROVIDER=groq`,
+`MODEL_NAME=openai/gpt-oss-20b` (hoặc model Groq tài khoản được phép dùng),
+và `API_KEY` trong `.env`. Không đưa key vào Git. Có thể dùng `--wait 15`
+hoặc lớn hơn khi gặp giới hạn tốc độ; xem cột `error` vì `eval --try` vẫn có
+thể báo nối được khi chỉ một số câu thành công.
+
 Chép `.env.example` thành `.env`, điền 3 dòng. Ví dụ:
 
 ```

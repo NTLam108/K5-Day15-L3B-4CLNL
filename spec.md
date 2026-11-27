@@ -188,6 +188,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
+| 27/11/2026 22:28 (GMT+7) | Nối Groq, chuẩn hóa dấu gạch trong mã trích dẫn; đối chiếu và làm rõ SP-22, SP-31 với trang nguồn | Lượt thử B01 dùng dấu gạch Unicode khiến kiểm căn cứ không nhận mã; trang nguồn cho phép thời hạn phản hồi khác và quy định rõ quyền quyết định của Shopee. |
 |  |  |  |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)

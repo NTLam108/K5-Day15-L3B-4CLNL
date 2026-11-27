@@ -41,7 +41,7 @@
 
 ## Người Bán phản hồi (mục 5, 9.3)
 
-- **SP-22** (mục 5) [nguoi_ban, thoi_han] — Người Bán có **02 ngày lịch** kể từ khi nhận thông báo để phản đối (không đồng ý hoàn tiền, chưa nhận hàng trả, hàng trả không đúng trường hợp, hàng trả hư hỏng / mất).
+- **SP-22** (mục 5) [nguoi_ban, thoi_han] — Người Bán có **02 ngày lịch**, hoặc thời hạn khác do Shopee quy định theo từng thời điểm, kể từ khi nhận thông báo để phản đối (không đồng ý hoàn tiền, chưa nhận hàng trả, hàng trả không đúng trường hợp, hàng trả hư hỏng / mất).
 - **SP-23** (mục 5, 9.3) [nguoi_ban, tu_dong] — Người Bán không phản hồi đúng hạn → coi như đồng ý; Shopee tự động hoàn tiền, có thể không cần Người Mua trả hàng.
 
 ## Yêu cầu với hàng gửi trả và bằng chứng (mục 6)
@@ -59,7 +59,7 @@
 
 ## Hoàn tiền (mục 9)
 
-- **SP-31** (mục 9.1) [hoan_tien, khi_nao] — Chỉ hoàn tiền khi: Người Bán xác nhận đã nhận hàng trả; hoặc Người Mua nhận đề xuất hoàn tiền không cần trả hàng; hoặc Shopee quyết định hoàn ngay; hoặc đơn đủ điều kiện và đơn vị vận chuyển đã nhận hàng trả.
+- **SP-31** (mục 9.1) [hoan_tien, khi_nao] — Chỉ hoàn tiền khi: Người Bán xác nhận đã nhận hàng trả; hoặc Người Mua chấp nhận đề xuất hoàn tiền không cần trả hàng; hoặc Shopee quyết định hoàn ngay; hoặc đơn đủ điều kiện, Shopee quyết định hoàn tiền khi đơn vị vận chuyển xác nhận đã nhận hàng trả.
 - **SP-32** (mục 9.2) [hoan_tien, hoan_ngay] — Người Mua không có lịch sử vi phạm có thể được hoàn ngay trong một số trường hợp, không cần chờ trả hàng.
 - **SP-33** (mục 9.4) [hoan_tien, phuong_thuc] — Tiền hoàn về Ví ShopeePay, SPayLater, thẻ Napas, tài khoản ngân hàng, thẻ tín dụng / ghi nợ đã đăng ký, hoặc Số Dư Tài Khoản Shopee. *Trang không ghi số ngày nhận tiền.*
 - **SP-34** (mục 9.5) [hoan_tien, mot_phan] — Người Bán đề xuất hoàn tiền ngay không cần trả hàng: số tiền do hai bên thoả thuận nhưng "không được thấp hơn 50% giá trị của Sản Phẩm Hoàn Trả"; dưới 50% thì Người Mua khiếu nại được.

@@ -14,7 +14,7 @@
 | Số dòng / số đoạn | 35 điều khoản (từ 12 mục của trang gốc) |
 | Phiên bản / ngày lấy | bản đăng 30/10/2026, hiệu lực 06/11/2026 · lấy ngày 27/11/2026 |
 | Nhãn | thật (viết lại từ nguồn công khai) |
-| Giới hạn | Chỉ một trang: thiếu Điều Khoản Dịch Vụ Shopee Mall, bài thời hạn hoàn tiền, bài hoàn tiền không cần trả hàng · trang gốc **không có** chữ "video mở hàng" (chỉ yêu cầu video và/hoặc ảnh khi nhận và khi đóng gói, SP-25) · nội dung được đọc qua công cụ tải trang rồi viết lại — một thành viên cần đối chiếu lại với trang gốc trước CP3 · Shopee có thể sửa chính sách bất cứ lúc nào (SP-01) |
+| Giới hạn | Chỉ một trang: thiếu Điều Khoản Dịch Vụ Shopee Mall, bài thời hạn hoàn tiền, bài hoàn tiền không cần trả hàng · trang gốc **không có** chữ "video mở hàng" (chỉ yêu cầu video và/hoặc ảnh khi nhận và khi đóng gói, SP-25) · đã đối chiếu nguồn bằng Codex ngày 27/11/2026, làm rõ SP-22 và SP-31; thành viên nhóm cần kiểm lại trước sử dụng · Shopee có thể sửa chính sách bất cứ lúc nào (SP-01) |
 
 ## Dataset 2 · Câu trả lời khảo sát người mua Shopee (nguồn `nguoi_dung` cho bộ câu thử)
 

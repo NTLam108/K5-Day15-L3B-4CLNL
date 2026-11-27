@@ -17,7 +17,10 @@ Chế độ giả (mặc định khi .env chưa có MODEL_PROVIDER, hoặc MODEL
 Nối model thật: điền .env (chép từ .env.example), rồi viết nhánh gọi API ở dưới theo docs/connect-model.md
 (có ví dụ OpenAI, Claude, model chạy trên máy, và cách nối nhà cung cấp khác). Không dán API key vào file này.
 """
+import json
 import os
+import urllib.error
+import urllib.request
 
 from tracing import model_call
 
@@ -49,8 +52,30 @@ def call_model(system: str, user: str) -> dict:
         last = (user.strip().splitlines() or [""])[-1]
         return {"text": "[câu trả lời giả — chưa nối model] " + last[:60], "model": "fake", "tokens_in": 0, "tokens_out": 0}
 
-    # NHÓM VIẾT: gọi model thật ở đây (theo MODEL_PROVIDER, MODEL_NAME, API_KEY) rồi trả đúng 4 khoá.
-    # Ví dụ chép được cho từng nhà cung cấp: docs/connect-model.md mục 2.
+    if MODEL_PROVIDER == "groq":
+        if not MODEL_NAME or not API_KEY:
+            raise ValueError("Cần MODEL_NAME và API_KEY trong .env để gọi Groq")
+        body = {"model": MODEL_NAME, "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ]}
+        req = urllib.request.Request(
+            "https://api.groq.com/openai/v1/chat/completions",
+            data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+            headers={"Content-Type": "application/json", "Authorization": "Bearer " + API_KEY,
+                     "User-Agent": "ShopeeReturnAssistant/1.0"},
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=60) as response:
+                data = json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            raise RuntimeError("Groq HTTP %d — kiểm tra key, model hoặc giới hạn API" % exc.code) from exc
+        usage = data["usage"]
+        return {"text": data["choices"][0]["message"]["content"],
+                "model": data.get("model") or MODEL_NAME,
+                "tokens_in": usage["prompt_tokens"], "tokens_out": usage["completion_tokens"]}
+
     raise NotImplementedError(
         "chưa viết phần gọi model thật cho MODEL_PROVIDER=%s trong codebase/ai.py — xem docs/connect-model.md"
         % MODEL_PROVIDER)
