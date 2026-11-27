@@ -23,10 +23,10 @@
 | Dùng để làm gì | lấy tình huống và cách nói thật của người dùng để viết câu thử `source = nguoi_dung` trong `eval/benchmark.csv` · số liệu pain ở `evidence/summary.md` |
 | Từ đâu | Google Form nhóm tự làm (bộ câu hỏi: `evidence/survey/questions.md`), gửi nhóm lớp L3B và bạn bè 18–30 tuổi, mở 17:15 – chốt 18:10 ngày 27/11/2026 |
 | Xử lý những bước gì | chỉ đưa vào repo **số đã tổng hợp** và **trích dẫn Q7 đã bỏ tên** · **bỏ hẳn câu Q8** (SĐT / Zalo / Discord của người sẵn sàng phỏng vấn — dữ liệu cá nhân, không commit) · không thu email, tên, mã học viên · câu Q7 dùng làm câu thử thì viết lại cho khỏi lộ chi tiết nhận diện được người trả lời |
-| Số dòng / số đoạn | 22 phiếu · Q7 (trả lời tự do): __ câu có nội dung, 5 câu đã trích ở `evidence/summary.md` *(Vũ Xuân Hiếu điền số câu Q7)* |
-| Phiên bản / ngày lấy | xuất từ Google Form lúc 18:10 ngày 27/11/2026 · file xuất gốc giữ ngoài repo, người giữ: Vũ Xuân Hiếu |
+| Số dòng / số đoạn | 24 phiếu · Q7 (trả lời tự do): 15 câu có nội dung, 5 câu đã trích ở `evidence/summary.md` · bản ẩn danh: `evidence/survey/results.csv` (24 dòng, 8 cột Q1–Q7 + dấu thời gian, không có cột Q8) |
+| Phiên bản / ngày lấy | xuất từ Google Form ngày 27/11/2026 · file xuất gốc (có Q8) giữ ngoài repo, người giữ: Vũ Xuân Hiếu |
 | Nhãn | thật |
-| Giới hạn | lệch về sinh viên (21/22), chỉ 1 nhân viên văn phòng · mẫu thuận tiện (lớp + bạn bè), không đại diện người mua Shopee nói chung · tự khai, không đối chiếu đơn hàng thật · câu hỏi lý do (Q4) có 20 người trả lời trong khi chỉ 13 người từng gặp hàng lỗi — cần kiểm lại mẫu số |
+| Giới hạn | lệch về sinh viên (23/24), chỉ 1 nhân viên văn phòng · mẫu thuận tiện (lớp + bạn bè), không đại diện người mua Shopee nói chung · tự khai, không đối chiếu đơn hàng thật · Q3–Q6 bắt buộc nên cả 10 người "chưa từng gặp hàng lỗi" cũng trả lời (14 người gặp, nhưng 22 người chọn lý do ở Q4) — tỉ lệ nên đọc kèm mẫu số |
 
 ## Dataset 3 · Bài báo phản ánh tranh chấp trả hàng trên Shopee (nguồn `data_that` cho bộ câu thử)
 
