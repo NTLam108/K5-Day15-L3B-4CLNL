@@ -4,18 +4,20 @@
 > Giữ nguyên tên file `TEAMS.md` ở thư mục gốc repo, giữ nguyên các dòng `- Tên nhóm:` … và tiêu đề cột của bảng. Chỉ thay chỗ `____`.
 > Kiểm bằng `python run.py check`: phần "Kiểm TEAMS.md" không báo gì là đúng format.
 
-- Tên nhóm: ____
-- Lớp: ____
-- Track: ____
-- Link repo: ____
+- Tên nhóm: 4CLNL
+- Lớp: L3B
+- Track: D
+- Link repo: https://github.com/NTLam108/K5-Day15-L3B-4CLNL.git
 
-| STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
-|---|---|---|---|---|
-| 1 | ____ | ____ | Đội trưởng | ____ |
-| 2 | ____ | ____ | Thành viên | ____ |
-| 3 | ____ | ____ | Thành viên | ____ |
+| STT | Họ và tên        | Mã học viên | Vai trò    | Phần việc chính |
+| --- | ---------------- | ----------- | ---------- | --------------- |
+| 1   | Nguyễn Trọng Lâm | 2A202603817 | Đội trưởng | Chốt lát cắt, viết spec.md, điều phối, nộp checkpoint |
+| 2   | Nguyễn Đức Hiếu  | 2A202603772 | Thành viên | Thu thập chính sách Shopee, viết công cụ trong codebase/ |
+| 3   | Vũ Xuân Hiếu     | 2A202603860 | Thành viên | Bằng chứng người dùng: khảo sát, phỏng vấn, evidence/ |
+| 4   | Nguyễn Mạnh Quân | 2A202603776 | Thành viên | Bộ câu thử eval/, metric, chấm điểm, mô phỏng chi phí cost/ |
 
 **Quy tắc điền**
+
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.
 - Mỗi thành viên một dòng, nhóm **3–5 người**. Thiếu thì thêm dòng theo đúng mẫu, thừa thì xoá dòng.
 - **Đội trưởng ở dòng 1**, cột Vai trò ghi đúng chữ `Đội trưởng`. Người khác ghi `Thành viên`.

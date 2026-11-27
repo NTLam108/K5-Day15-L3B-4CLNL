@@ -1,4 +1,4 @@
-# Canvas — [tên nhóm] · Track [A–F]
+# Canvas — 4CLNL · Track D
 
 > Điền ở guide bước 1.4. CP1 17:00 Thứ Sáu 27/11: nộp bản đầu, đủ 7 dòng (dòng 4 được ghi giả thuyết + nguồn sẽ kiểm).
 > CP2 19:30 Thứ Sáu 27/11: cập nhật (số bằng chứng đầu, lát cắt đã chốt) và điền dòng "Đã đổi gì so với CP1".
@@ -6,11 +6,11 @@
 
 | # | Dòng | Nhóm điền |
 |---|---|---|
-| 1 | Track + lát cắt dự kiến | |
-| 2 | Người dùng chính (một vai cụ thể — không phải "học viên nói chung") | |
-| 3 | Pain một câu: ai — đang làm gì — vướng đâu — hậu quả | |
-| 4 | Bằng chứng đầu — CP1: giả thuyết + nguồn sẽ kiểm · CP2: số đầu tiên + 1 trích dẫn | |
-| 5 | **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả) | |
-| 6 | AI tự làm đến đâu + 1 dòng lý do: sai thì ai chịu gì | |
-| 7 | Phân công có tên | |
-| — | *(CP2)* Đã đổi gì so với CP1 | |
+| 1 | Track + lát cắt dự kiến | Track D (Thương mại điện tử) — đề **D2. Trợ lý đổi trả**. Lát cắt dự kiến: chỉ **Shopee**, chỉ trường hợp **"hàng lỗi / hư hỏng / sai mẫu"**; người mua mô tả vấn đề + thông tin đơn → AI đối chiếu chính sách đổi trả công khai của Shopee → kết luận đủ / chưa đủ điều kiện, nêu thiếu gì, soạn sẵn nội dung yêu cầu trả hàng. *Kiểm tra ảnh lỗi và các sàn khác (Lazada, TikTok Shop) để sau lát cắt.* |
+| 2 | Người dùng chính (một vai cụ thể — không phải "học viên nói chung") | Sinh viên / nhân viên văn phòng 18–30 tuổi mua hàng trên Shopee vài lần mỗi tháng, **vừa nhận một đơn bị lỗi hoặc sai mẫu**, chưa từng (hoặc hiếm khi) tự gửi yêu cầu trả hàng, không có thời gian đọc hết trang chính sách. |
+| 3 | Pain một câu: ai — đang làm gì — vướng đâu — hậu quả | Người mua Shopee **vừa nhận hàng lỗi** và muốn trả hàng/hoàn tiền, nhưng **không biết mình có đủ điều kiện không và cần chuẩn bị gì** (hạn bao nhiêu ngày, có cần video mở hàng, ảnh phải chụp thế nào, chọn lý do nào) vì chính sách dài và khó hiểu → **yêu cầu bị từ chối hoặc quá hạn**, mất tiền, hoặc bỏ cuộc không đòi nữa. |
+| 4 | Bằng chứng đầu — CP1: giả thuyết + nguồn sẽ kiểm · CP2: số đầu tiên + 1 trích dẫn | **Giả thuyết:** (a) ≥50% người mua online từng nhận hàng lỗi/sai mà không gửi yêu cầu trả, lý do chính là "thủ tục rắc rối / không rõ điều kiện"; (b) trong số đã gửi, lý do bị từ chối phổ biến nhất là **thiếu video mở hàng / ảnh không đủ / quá hạn** — tức lỗi do không hiểu chính sách chứ không phải do hàng. **Nguồn sẽ kiểm:** (1) khảo sát nhanh Google Form ≥20 người trong lớp + bạn bè; (2) phỏng vấn 3–5 người từng bị từ chối trả hàng; (3) đọc bài than phiền trên group Facebook / Reddit / Voz về "Shopee từ chối trả hàng"; (4) trang Chính sách Trả hàng/Hoàn tiền công khai của Shopee (đếm số điều kiện, độ dài). *CP2: ghi số đầu tiên + 1 trích dẫn nguyên văn.* |
+| 5 | **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả) | Một **người mua Shopee vừa nhận hàng lỗi** nhập mô tả vấn đề + ngày nhận hàng + có/không có video mở hàng → **AI quyết định đơn đủ hay chưa đủ điều kiện trả hàng theo đúng điều khoản chính sách (có trích điều khoản)** → người dùng nhận **kết luận + danh sách việc còn thiếu + đoạn yêu cầu trả hàng soạn sẵn** để dán vào Shopee. |
+| 6 | AI tự làm đến đâu + 1 dòng lý do: sai thì ai chịu gì | AI **chỉ tư vấn và soạn nháp**: đọc chính sách, kết luận đủ/chưa đủ điều kiện **kèm trích điều khoản**, liệt kê bằng chứng cần có, soạn nội dung yêu cầu. AI **không tự gửi** yêu cầu, không hứa chắc được hoàn tiền; tình huống chính sách không nói rõ hoặc câu hỏi ngoài phạm vi (sàn khác, tranh chấp pháp lý) → **từ chối/nói "không chắc", chỉ sang CSKH Shopee**. *Lý do:* sai "đủ điều kiện" → người dùng mất công gửi, mất phí ship, có thể lỡ hạn; sai "không đủ" → người dùng bỏ mất khoản hoàn tiền hợp lệ — người chịu thiệt luôn là người mua, nên quyết định cuối và nút gửi phải để người mua tự bấm. |
+| 7 | Phân công có tên | **Nguyễn Trọng Lâm** (đội trưởng): chốt lát cắt, `spec.md`, điều phối, nộp checkpoint · **Nguyễn Đức Hiếu**: thu thập & cắt nhỏ chính sách Shopee thành dữ liệu tra cứu, viết công cụ trong `codebase/` · **Vũ Xuân Hiếu**: bằng chứng người dùng — khảo sát, phỏng vấn, `evidence/` · **Nguyễn Mạnh Quân**: bộ câu thử `eval/benchmark.csv`, `metric_spec.yaml`, chấm điểm, mô phỏng chi phí `cost/` |
+| — | *(CP2)* Đã đổi gì so với CP1 | *(điền ở CP2)* |
