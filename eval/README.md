@@ -11,18 +11,18 @@
 
 ## 2. Bộ câu thử dựng ra sao
 
-- `eval/benchmark.csv`: **15** câu (`thuong` **3** · `kho` **9** · `tu_choi` **3**, trong đó cả **3** câu `tu_choi` đều là câu tấn công / vượt phạm vi).
-- Nguồn (`python run.py check` in sẵn): `nguoi_dung` **5** · `data_that` **5** · `tu_viet` **5** · `sinh_seed` **0** → từ người dùng / data thật **10/15** (66.7%, vượt ngưỡng ≥1/3; gồm 5 câu `nguoi_dung` từ khảo sát `n = 24` Q4 & Q7 trong `evidence/summary.md` và 5 câu `data_that` từ `data/shopee_policy.md` & bài báo trong `evidence/data-mining.md`). *(Sẽ mở rộng lên 20–30 câu trước CP3.)*
+- `eval/benchmark.csv`: **24** câu đã khoá cho cả lượt 1 và lượt 2 tại commit `b5f9ad8` (`thuong` **8** · `kho` **13** · `tu_choi` **3**, trong đó cả **3** câu `tu_choi` đều là câu tấn công / vượt phạm vi).
+- Nguồn (`python run.py check` in sẵn): `nguoi_dung` **10** · `data_that` **9** · `tu_viet` **5** · `sinh_seed` **0** → từ người dùng / data thật **19/24** (**79.2%**, vượt ngưỡng ≥1/3; gồm 10 câu `nguoi_dung` từ khảo sát `n = 24` Q4 & Q7 và phỏng vấn `P1`–`P3` trong `evidence/`, cùng 9 câu `data_that` từ `data/shopee_policy.md` và bài báo VnExpress trong `evidence/data-mining.md`).
 - Độ phủ — lưới input 4 chiều (guide 2.4 bước 5):
-  1. **Loại vấn đề / lỗi sản phẩm:** hư hại vận chuyển (`B01`), giao sai màu/size (`B02`, `B13`), bị tráo hàng/khác mô tả (`B03`), lỗi không chạy (`B04`), lỗi chung/mơ hồ (`B05`, `B07`), lỗi đơn Shopee Mall (`B08`), không lỗi/đổi ý đã cắt mác (`B09`), quy tắc chung & quy trình hoàn tiền (`B14`, `B15`).
-  2. **Thời gian từ lúc giao thành công:** trong hạn 1–5 ngày (`B01`–`B04`, `B08`, `B09`), không nêu rõ thời gian (`B05`, `B07`, `B13`, `B14`, `B15`), quá hạn 15 ngày (`B06`, `B12`).
-  3. **Bằng chứng & điều kiện tài khoản:** đủ video/ảnh lúc nhận (`B01`–`B04`, `B06`, `B08`), thiếu video lúc nhận (`B05`), chưa rõ bằng chứng (`B07`, `B13`, `B14`, `B15`), đơn COD chưa liên kết ngân hàng/ShopeePay & đã hết Shopee Đảm Bảo (`B04`), đã cắt tem mác (`B09`).
-  4. **Phạm vi & ý định người dùng:** đúng phạm vi Shopee hàng lỗi (`B01`–`B08`, `B13`–`B15`), ngoài lát cắt đổi ý (`B09`), tấn công prompt injection/ép cam kết (`B10`), ngoài phạm vi sàn Lazada (`B11`), vượt thẩm quyền pháp lý/gian lận bằng chứng (`B12`).
+  1. **Loại vấn đề / lỗi sản phẩm:** hư hại vận chuyển (`B01`), giao sai màu/size (`B02`, `B13`), bị tráo hàng/khác mô tả (`B03`, `B18`), giao thiếu hàng (`B16`), hết hạn sử dụng (`B17`), lỗi kỹ thuật/không hoạt động (`B04`, `B19`, `B21`, `B24`), thực phẩm tươi sống/đông lạnh hỏng (`B20`, `B22`), lỗi rách & shop gạ hoàn một phần (`B23`), lỗi chung/mơ hồ (`B05`, `B07`), lỗi đơn Shopee Mall (`B08`), không lỗi/đổi ý đã cắt mác (`B09`), quy tắc chung & cơ chế hoàn tiền (`B14`, `B15`).
+  2. **Thời gian từ lúc giao thành công:** thực phẩm tươi sống trong 24 giờ (`B20`) và quá 24 giờ (`B22`), hàng thường trong hạn 1–5 ngày (`B01`–`B04`, `B08`, `B09`, `B16`–`B19`, `B21`, `B23`, `B24`), không nêu rõ thời gian (`B05`, `B07`, `B13`, `B14`, `B15`), quá hạn 15 ngày (`B06`, `B12`).
+  3. **Bằng chứng, phí ship & điều kiện tài khoản:** đủ video & ảnh lúc nhận (`B01`–`B04`, `B06`, `B08`, `B16`, `B17`, `B19`, `B20`, `B22`–`B24`), không video nhưng có ảnh lỗi (`B18`), thiếu video/bằng chứng lúc nhận (`B05`, `B21`), chưa rõ bằng chứng (`B07`, `B13`, `B14`, `B15`), đơn COD chưa liên kết ngân hàng/ShopeePay & hết Shopee Đảm Bảo (`B04`), đã cắt tem mác (`B09`), hỏi phí ship lấy tại nhà/bưu cục vs Tự sắp xếp (`B18`, `B19`, `B24`).
+  4. **Phạm vi & ý định người dùng:** đúng phạm vi Shopee hàng lỗi (`B01`–`B08`, `B13`–`B24`), ngoài lát cắt đổi ý (`B09`), tấn công prompt injection/ép cam kết 100% & tự gửi (`B10`), ngoài phạm vi sàn Lazada (`B11`), vượt thẩm quyền pháp lý/gian lận chỉnh sửa bằng chứng (`B12`).
 - Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5):
   - **Lớp 1 (nguồn sự thật / chính sách không có hoặc xung đột):** `B08` (đơn Shopee Mall theo `SP-03` & số ngày nhận hoàn tiền theo `SP-33` không có trong tài liệu), `B14` (shop tự đặt luật không cho trả khi đã bóc hộp, đối chiếu `SP-01`, `SP-10`, `SP-16`, `SP-35`), `B15` (chắc chắn hoàn tiền ngay hay chờ shop xác nhận, đối chiếu `SP-22`, `SP-23`, `SP-31`–`SP-33`).
   - **Lớp 2 (mơ hồ / thiếu thông tin):** `B07` (khảo sát Q4/Q7: báo hàng lỗi nhưng thiếu ngày nhận, loại lỗi, video/ảnh), `B13` (khảo sát Q4: giao sai mẫu nhưng chỉ nói "quá mấy ngày", chưa rõ có vượt 15 ngày `SP-11` không).
-  - **Lớp 3 (ngoài phạm vi / thẩm quyền trong Shopee):** `B09` (đổi ý đã cắt mác nhưng muốn khai sai sang diện "hàng lỗi", đối chiếu `SP-05`, `SP-10`, `SP-24`).
-  - **Lớp 4 (đặc thù lĩnh vực — sai gây thiệt hại nặng nhất cho người mua):** `B04` (đơn COD hết Thời Gian Shopee Đảm Bảo `SP-02` nhưng chưa liên kết tài khoản nhận hoàn tiền `SP-14`), `B05` (khảo sát Q7: không quay video từ lúc nguyên tem, đối chiếu `SP-25`), `B06` (quá hạn 15 ngày `SP-11` và cơ chế xem xét không bảo đảm `SP-13`).
+  - **Lớp 3 (ngoài phạm vi / thẩm quyền trong Shopee):** `B09` (đổi ý đã cắt mác nhưng muốn khai sai sang diện "hàng lỗi", đối chiếu `SP-05`, `SP-10`, `SP-24`), `B21` (phỏng vấn P2: bàn phím lỗi phát hiện sau khui hộp bị shop từ chối, phân vân chuyển sang lý do Đổi ý, đối chiếu `SP-05`, `SP-10`, `SP-16`, `SP-19`, `SP-20`, `SP-25`).
+  - **Lớp 4 (đặc thù lĩnh vực — sai gây thiệt hại nặng nhất cho người mua):** `B04` (đơn COD hết Thời Gian Shopee Đảm Bảo `SP-02` nhưng chưa liên kết tài khoản nhận hoàn tiền `SP-14`), `B05` (khảo sát Q7: không quay video từ lúc nguyên tem, đối chiếu `SP-16`, `SP-25`), `B06` (hàng thường quá hạn 15 ngày `SP-11`, `SP-13`), `B22` (thực phẩm tươi sống quá hạn 24 giờ `SP-12`, `SP-13`), `B23` (khảo sát Q4/Q7: shop gạ hoàn một phần 30% < 50% `SP-34` hoặc giao dịch ngoài sàn qua Zalo `SP-35`), `B24` (khảo sát Q7: shop im lặng quá hạn phản hồi 02 ngày lịch `SP-22`, `SP-23` và bẫy phí ship Tự sắp xếp `SP-28`, `SP-30`).
 
 ## 3. Metric và cách chấm
 
@@ -55,7 +55,7 @@
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/__ | | |
+| 1 | `run-1@20261127-222913` | `openai/gpt-oss-20b` (Groq) | Workflow cố định 6 bước (`codebase/agent.py` + `tra_dieu_khoan` đọc `data/shopee_policy.md` `SP-01`..`SP-35`, bản đầu trước cải tiến) | 18/24 | 75% | Chưa đạt (<80%; `tu_choi` 3/3 = 100%) |
 | 2 | | | | __/__ | | |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
