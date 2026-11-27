@@ -7,15 +7,31 @@ Track: [ ] A · [ ] B · [ ] C · [ ] D · [ ] E — bài toán: [đề gợi ý
 Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
-- Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):
-- Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm":
+- **Luồng hiện tại trên app Shopee** khi người mua nhận hàng lỗi / hư hỏng / sai mẫu *(viết theo trải nghiệm của nhóm — cần chụp ảnh từ tài khoản thành viên, che mã đơn và địa chỉ, chèn vào đây để xác nhận)*:
+  1. Mở Shopee → **Tôi → Đơn mua** → mở đơn vừa nhận.
+  2. Bấm **Trả hàng/Hoàn tiền** → chọn sản phẩm và chọn **lý do** trong danh sách có sẵn (hàng lỗi, sai mẫu, thiếu hàng…).
+  3. **Tải ảnh / video bằng chứng**, viết mô tả, chọn phương án (hoàn tiền, hoặc trả hàng và hoàn tiền) → gửi yêu cầu.
+  4. Người bán phản hồi: đồng ý, hoặc từ chối → người mua có thể khiếu nại để Shopee xem xét.
+  5. Nếu được chấp nhận: gửi trả hàng qua đơn vị vận chuyển → nhận hoàn tiền.
+  - **Điểm vướng:** người mua chỉ đọc chính sách (hạn trả hàng, có cần video mở hàng không, ảnh thế nào là đủ, chọn lý do nào) **sau khi** đã gặp lỗi, và thường chỉ biết mình thiếu gì khi yêu cầu đã bị từ chối hoặc đã quá hạn.
+- **Công cụ đang được dùng cho việc này:**
+  - Trang **Chính sách Trả hàng/Hoàn tiền** và **Trung tâm trợ giúp** của Shopee — nguồn: trang công khai của Shopee *(nhóm sẽ ghi link + ngày truy cập vào `data/DATA_CARD.md`)*.
+  - **Chat với Shopee / trợ lý ảo trong app** — trả lời có đối chiếu đúng tình huống của từng đơn hay chỉ dẫn link chính sách: **chưa kiểm**.
+  - Ngoài Shopee: tìm Google, hỏi bạn bè, hỏi trong group Facebook mua sắm — **chưa kiểm** mức độ phổ biến (sẽ hỏi trong khảo sát).
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- Người dùng chính (một vai cụ thể):
-- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI):
-- Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:
-- Pain (KHÔNG chữ AI): ai — đang làm gì — vướng đâu — hậu quả gì:
-- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): __
+- **Người dùng chính:** sinh viên / nhân viên văn phòng 18–30 tuổi, mua hàng trên Shopee vài lần mỗi tháng, **vừa nhận một đơn bị lỗi, hư hỏng hoặc sai mẫu**, chưa từng (hoặc hiếm khi) tự gửi yêu cầu trả hàng, và không có thời gian đọc hết trang chính sách.
+- **Việc họ cố làm xong:** *gửi yêu cầu trả hàng / hoàn tiền được chấp nhận cho một đơn Shopee bị lỗi, trong vài ngày sau khi nhận hàng.*
+- **Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:**
+  - *Giải bằng:* tự bấm "Trả hàng/Hoàn tiền" và chọn lý do theo cảm tính; ai cẩn thận thì đọc trang chính sách, hỏi chat Shopee hoặc hỏi bạn bè / group Facebook.
+  - *Hỏng ở:* chính sách dài, nằm rải nhiều trang, không trả lời thẳng câu "đơn **của tôi** có đủ điều kiện không, tôi còn thiếu gì"; các yêu cầu quan trọng (video mở hàng, hạn bao nhiêu ngày, ảnh phải thấy rõ lỗi) thường chỉ được biết khi đã muộn.
+  - *Vì sao chưa bỏ:* trả hàng ngay trong app vẫn là con đường duy nhất để lấy lại tiền; không có lựa chọn nào khác dễ hơn, nên người mua hoặc cố làm cho xong, hoặc bỏ cuộc.
+- **Pain:** Người mua Shopee **vừa nhận hàng lỗi** và muốn trả hàng / hoàn tiền, nhưng **không biết mình có đủ điều kiện không và cần chuẩn bị gì** (hạn, video mở hàng, ảnh, lý do chọn) vì chính sách dài và khó hiểu → **yêu cầu bị từ chối hoặc quá hạn**, mất tiền, hoặc bỏ cuộc không đòi nữa.
+- **Bằng chứng** (chi tiết: `evidence/summary.md`) — **chưa có số, đang thu thập**:
+  - Giả thuyết cần kiểm: (a) ≥50% người mua online từng nhận hàng lỗi / sai mà **không** gửi yêu cầu trả, lý do chính là "thủ tục rắc rối / không rõ điều kiện"; (b) trong số đã gửi, lý do bị từ chối phổ biến nhất là thiếu video mở hàng / ảnh không đủ / quá hạn.
+  - Nguồn: khảo sát Google Form ≥20 người · phỏng vấn 3–5 người từng bị từ chối trả hàng · bài than phiền trên Facebook / Voz / Reddit · trang chính sách Shopee.
+  - Số chính: __/__ (__%) người từng bỏ không trả hàng · __/__ người bị từ chối vì thiếu bằng chứng / quá hạn — **điền khi có kết quả khảo sát, không điền số ước đoán.**
+  - Kết luận: __ *(giả thuyết đúng / sai / phải đổi — ghi sau khi có số)*
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
@@ -35,7 +51,44 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả):
 - Không làm (≥3 điều):
-- **Sơ đồ** (ảnh / Mermaid / draw.io): [chèn ở đây]
+- **Sơ đồ** (Mermaid) — workflow cố định 6 bước, 1 lời gọi model ở quyết định trung tâm (bước 4):
+
+  ```mermaid
+  flowchart TD
+      U["Người mua Shopee<br/>mô tả lỗi · ngày nhận hàng · có/không video mở hàng"] --> G
+
+      G{"① Chặn phạm vi (code)<br/>sàn khác? tranh chấp pháp lý?<br/>câu lệnh lạ / tấn công?"}
+      G -- "ngoài phạm vi" --> R["Từ chối + chỉ sang CSKH Shopee"]
+      G -- "trong phạm vi" --> X
+
+      X["② Tách thông tin (code)<br/>loại vấn đề · số ngày từ lúc nhận · có video/ảnh"]
+      X -- "thiếu thông tin" --> Q["Hỏi lại đúng phần còn thiếu"]
+      X -- "đủ" --> T
+
+      T["③ Công cụ tra_dieu_khoan<br/>tìm điều khoản theo loại vấn đề"] --> D
+      DB[("data/shopee_policy.md<br/>điều khoản đã đánh mã SP-01…")] -.-> T
+
+      D["④ MODEL quyết định<br/>đủ / chưa đủ điều kiện + mã điều khoản<br/>+ việc còn thiếu + nháp yêu cầu trả hàng"] --> V
+
+      V{"⑤ Kiểm căn cứ (code)<br/>mã điều khoản có trong data?<br/>kết luận có kèm mã?"}
+      V -- "không có căn cứ" --> K["Nói 'không chắc' + chỉ sang CSKH Shopee"]
+      V -- "hợp lệ" --> O
+
+      O["⑥ Kết quả cho người mua<br/>kết luận + trích điều khoản<br/>+ danh sách việc còn thiếu + đoạn yêu cầu soạn sẵn"]
+      O --> H(["Người mua tự đọc, tự sửa, tự bấm gửi trên Shopee<br/>(hệ thống không gửi thay)"])
+
+      L[["tracing.py: ghi mọi lần gọi model / công cụ + token"]] -.- T
+      L -.- D
+  ```
+
+  | Bước | Ai làm | Chặn rủi ro gì |
+  |---|---|---|
+  | ① Chặn phạm vi | code (luật cố định) | câu tấn công, câu hỏi sàn khác / pháp lý không lọt tới model |
+  | ② Tách thông tin | code | thiếu ngày nhận / tình trạng video → hỏi lại, không đoán |
+  | ③ `tra_dieu_khoan` | công cụ, chỉ đọc, không tác động ra ngoài | model chỉ được dựa trên điều khoản trả về |
+  | ④ Quyết định | model (lời gọi duy nhất) | — |
+  | ⑤ Kiểm căn cứ | code | kết luận không có mã điều khoản hợp lệ → hạ về "không chắc" (G10) |
+  | ⑥ Kết quả | người mua duyệt | quyết định cuối và nút gửi luôn do người mua bấm |
 - **Hình dạng:** [ ] workflow cố định · [ ] một agent · [ ] nhiều agent — 2 dòng lý do, và vì sao **không** chọn hình dạng phức tạp hơn:
 - **AI dựa vào đâu** — mỗi công cụ (khớp `codebase/tools.py`):
 
