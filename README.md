@@ -84,7 +84,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: `openai/gpt-oss-20b` qua Groq API (`codebase/ai.py`, `MODEL_PROVIDER=groq`); 1 lời gọi / câu hỏi ở bước ④. Lượt 1: `run-1@20261127-222913`, 18/24 đạt (75%) |
+| Lời gọi AI ở quyết định trung tâm | **Thật** | Hỗ trợ `gpt-6-luna` qua OpenAI (`MODEL_PROVIDER=openai`) và `openai/gpt-oss-20b` qua Groq; tối đa 1 lời gọi / câu hỏi ở bước ④. Lượt Groq 1: 18/24 (75%); lượt OpenAI `run-3`, `run-4` chờ chấm. |
 | Công cụ `tra_dieu_khoan` + dữ liệu chính sách | **Thật** | Đọc `data/shopee_policy.md` — bản viết lại trang chính sách công khai của Shopee (hiệu lực 06/11/2026), 35 điều khoản `SP-01`…`SP-35` |
 | Chặn phạm vi (bước ①) và tách thông tin (bước ②) | **Thật**, luật viết tay | Luật từ khoá có dấu trong `codebase/agent.py`, không gọi model; chưa hiểu câu gõ không dấu |
 | Kiểm căn cứ (bước ⑤) | **Thật** | Code kiểm nhãn kết luận và mã `SP-xx`; thiếu căn cứ → hạ về "Không chắc cần CSKH" |

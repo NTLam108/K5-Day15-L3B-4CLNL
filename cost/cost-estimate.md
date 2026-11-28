@@ -1,5 +1,12 @@
 # Chi phí khi dùng thật
 
+## Phép đo bổ sung: GPT-6 Luna
+
+- Kết quả gốc: `cost/openai-luna/simulate-1.csv`, `cost/openai-luna/simulate-1-summary.md` và `traces/openai-luna/simulate-1.jsonl`. Đặt trong thư mục riêng vì một commit khác của nhóm đã dùng tên `simulate-1` cho lượt Groq; nội dung gốc và run ID không sửa.
+- Run ID `simulate-1@20261128-110500`: 50 phiên, seed 42, 0 phiên lỗi; các persona có 16, 26, 8 phiên. Giá đo cùng model: $0.10 / 1 triệu token vào và $0.50 / 1 triệu token ra, theo `cost/personas.yaml`.
+- Theo bảng tổng hợp gốc: **$0.00094 / phiên**; chi phí model mỗi tháng thấp **$2.38**, cơ sở **$9.52**, cao **$23.79**. Các kịch bản người dùng và tỷ giá vẫn là giả định của nhóm; chưa bao gồm các chi phí ngoài model.
+- **Chưa có chi phí / task thành công:** `run-4` chưa chấm, không sử dụng tỷ lệ 79% của Groq cho GPT-6 Luna. Chi phí theo model khác trong bảng tổng hợp chỉ là tính lại theo giá, vì mỗi model có thể tách token khác nhau. Chưa đo thời gian tiết kiệm thực tế.
+
 > Điền ở guide bước 4.2, nộp ở CP4 14:30 Thứ Bảy 28/11.
 > Số **không điền tay**: sinh từ `cost/personas.yaml` → `python run.py simulate --rate-from eval/run-2.csv --wait 15` → chép bảng trong `cost/simulate-1-summary.md` vào đây.
 > Lúc build dùng gói miễn phí vẫn tính theo **giá gói trả phí** — đây là chi phí cho lúc đưa vào dùng thật.

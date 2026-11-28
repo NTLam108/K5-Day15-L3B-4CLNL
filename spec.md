@@ -184,6 +184,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - Chi phí / task thành công: **$0.00077 (≈ 20 ₫)** (`openai/gpt-oss-20b` — đo và tính cùng model) · **$0.0056 (≈ 142 ₫)** (`gemini-2.5-flash`) · **$0.0184 (≈ 467 ₫)** (`gemini-4-hydrogen`)
 - Chi phí / tháng ở quy mô thật (`openai/gpt-oss-20b`, 5.000 / 20.000 / 50.000 người): thấp **$1.60 (≈ 40.619 ₫)** · cơ sở **$6.40 (≈ 162.478 ₫)** · cao **$15.99 (≈ 406.194 ₫)** (`gemini-4-hydrogen`: 964k / 3.85 triệu / 9.64 triệu ₫) → chi tiết `cost/cost-estimate.md`
 - So với impact / người / tháng (§2): **Rất đáng làm** — chi phí chỉ **8 ₫ / người / tháng** (20 ₫ / task thành công) so với ~21 phút tìm hiểu chính sách mỗi lần và khoản tiền hoàn hàng chục đến hàng trăm nghìn đồng có nguy cơ bị mất oan (7/24 người khảo sát từng bỏ cuộc/không được hoàn).
+- **Phép đo GPT-6 Luna bổ sung:** `cost/openai-luna/simulate-1.csv`, run ID `simulate-1@20261128-110500`, 50 phiên, seed 42, 0 phiên lỗi. Chi phí model / tháng: thấp $2.38 · cơ sở $9.52 · cao $23.79. Chưa tính chi phí / task thành công do `run-4` chưa được chấm; không dùng tỷ lệ Groq cho model này. Thời gian tiết kiệm thực tế và chi phí ngoài model chưa đo.
 
 ## §9. Rủi ro & an toàn
 - **Dữ liệu:**
@@ -232,6 +233,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 | 28/11/2026 09:39 (GMT+7) | Chạy **lượt 2** `run-2@20261128-093903` (cùng model `openai/gpt-oss-20b`, cùng 24 câu) → `eval/run-2.csv`, `traces/run-2.jsonl`; 0 lỗi kỹ thuật | Đo lại sau một lần cải tiến nhắm 6/6 câu trượt lượt 1 |
 | 28/11/2026 10:16 (GMT+7) | Chấm lượt 2 → **19/24 (79%)**: thuong 8/8 · kho 8/13 · tu_choi 3/3 — **vẫn chưa đạt chuẩn** (thiếu 1 câu); B09, B18 từ trượt → đạt, **B14 tệ đi** (đạt → trượt); ghi `eval/report.md` mục 1, 3, 4 và `eval/README.md` | Chuẩn "đạt" và `expected` giữ nguyên; chỉ điền cột `pass`, `ghi_chu` |
 | 28/11/2026 (sau 10:16) | `spec.md` §7 ghi kết quả lượt 2; viết §9 Rủi ro & an toàn (gồm lỗ hổng còn lại từ lượt 2: mã có thật nhưng sai ý ở B14, B24; thiếu cảnh báo SP-35 ở B23) và §10 phân công, dùng AI | Hoàn thiện §0–§10 cho CP4 |
+| 28/11/2026 11:03 (GMT+7) | Bổ sung connector OpenAI, chạy `run-3` (trước cải tiến) và `run-4` (sau cải tiến) với `gpt-6-luna`, cùng bộ 24 câu; bổ sung giá model trong `cost/personas.yaml` | Theo yêu cầu đổi model; giữ nguyên lượt Groq, kết quả mới chờ chấm theo metric đã khóa. |
 |  |  |  |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)

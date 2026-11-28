@@ -57,6 +57,8 @@
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-222913` | `openai/gpt-oss-20b` (Groq) | Workflow cố định 6 bước (`codebase/agent.py` + `tra_dieu_khoan` đọc `data/shopee_policy.md` `SP-01`..`SP-35`, bản đầu trước cải tiến) | 18/24 | 75% | Chưa đạt (<80%; `tu_choi` 3/3 = 100%) |
 | 2 | `run-2@20261128-093903` | `openai/gpt-oss-20b` (Groq) | Cải tiến bước ⑤ (đọc `**KẾT LUẬN:**` in đậm) + bước ② (mở rộng từ khóa `sai_mo_ta`/`nguoi_ban`/`phi_ship`, thêm `lien_lac`, tách vế bằng chứng) — commit `7029863` | 19/24 | 79% | Chưa đạt (<80%, thiếu 1 câu; `tu_choi` 3/3 = 100%) |
+| 3 | `run-3@20261128-105642` | `gpt-6-luna` (OpenAI) | Mã `agent.py` trước cải tiến CP4 từ `84e6a0e`, connector OpenAI mới; chạy trên cùng bộ 24 câu và data hiện tại | Chưa chấm | — | Chưa xác định |
+| 4 | `run-4@20261128-105932` | `gpt-6-luna` (OpenAI) | Mã sau cải tiến CP4 `7029863`, connector OpenAI mới; cùng bộ 24 câu | Chưa chấm | — | Chưa xác định |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
