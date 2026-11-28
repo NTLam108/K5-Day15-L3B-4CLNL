@@ -46,27 +46,21 @@ MODEL_NAME = (os.environ.get("MODEL_NAME") or "").strip()
 API_KEY = (os.environ.get("API_KEY") or "").strip()
 
 
-_CHAT_ENDPOINTS = {
-    "groq": "https://api.groq.com/openai/v1/chat/completions",
-    "openai": "https://api.openai.com/v1/chat/completions",
-}
-
-
 @model_call
 def call_model(system: str, user: str) -> dict:
     if MODEL_PROVIDER == "fake":
         last = (user.strip().splitlines() or [""])[-1]
         return {"text": "[câu trả lời giả — chưa nối model] " + last[:60], "model": "fake", "tokens_in": 0, "tokens_out": 0}
 
-    if MODEL_PROVIDER in _CHAT_ENDPOINTS:
+    if MODEL_PROVIDER == "groq":
         if not MODEL_NAME or not API_KEY:
-            raise ValueError("Cần MODEL_NAME và API_KEY trong .env để gọi %s" % MODEL_PROVIDER)
+            raise ValueError("Cần MODEL_NAME và API_KEY trong .env để gọi Groq")
         body = {"model": MODEL_NAME, "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ]}
         req = urllib.request.Request(
-            _CHAT_ENDPOINTS[MODEL_PROVIDER],
+            "https://api.groq.com/openai/v1/chat/completions",
             data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
             headers={"Content-Type": "application/json", "Authorization": "Bearer " + API_KEY,
                      "User-Agent": "ShopeeReturnAssistant/1.0"},
@@ -76,7 +70,7 @@ def call_model(system: str, user: str) -> dict:
             with urllib.request.urlopen(req, timeout=60) as response:
                 data = json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
-            raise RuntimeError("%s HTTP %d — kiểm tra key, model hoặc giới hạn API" % (MODEL_PROVIDER, exc.code)) from exc
+            raise RuntimeError("Groq HTTP %d — kiểm tra key, model hoặc giới hạn API" % exc.code) from exc
         usage = data["usage"]
         return {"text": data["choices"][0]["message"]["content"],
                 "model": data.get("model") or MODEL_NAME,

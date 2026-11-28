@@ -84,7 +84,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** | **Model chính từ CP4: `gpt-6-luna` qua OpenAI** (`MODEL_PROVIDER=openai`, `MODEL_NAME=gpt-6-luna` trong `.env`); 1 lời gọi / câu hỏi ở bước ④. Lượt đo: `run-3` (code trước cải tiến) · `run-4` (sau cải tiến) — chờ chấm. *Lịch sử:* CP3 dùng `openai/gpt-oss-20b` qua Groq (`run-1` 18/24, `run-2` 19/24); đổi vì gói miễn phí Groq giới hạn 8.000 token / phút, chạy lượt bị lỗi 429. `codebase/ai.py` vẫn hỗ trợ cả hai. |
+| Lời gọi AI ở quyết định trung tâm | **Thật** | Model: `openai/gpt-oss-20b` qua Groq API (`codebase/ai.py`, `MODEL_PROVIDER=groq`); 1 lời gọi / câu hỏi ở bước ④. Lượt 1 `run-1@20261127-222913`: 18/24 (75%) · lượt 2 `run-2@20261128-093903`: 19/24 (79%). Gói miễn phí giới hạn 8.000 token / phút — chạy nhiều câu liên tục cần `--wait`. |
 | Công cụ `tra_dieu_khoan` + dữ liệu chính sách | **Thật** | Đọc `data/shopee_policy.md` — bản viết lại trang chính sách công khai của Shopee (hiệu lực 06/11/2026), 35 điều khoản `SP-01`…`SP-35` |
 | Chặn phạm vi (bước ①) và tách thông tin (bước ②) | **Thật**, luật viết tay | Luật từ khoá có dấu trong `codebase/agent.py`, không gọi model; chưa hiểu câu gõ không dấu |
 | Kiểm căn cứ (bước ⑤) | **Thật** | Code kiểm nhãn kết luận và mã `SP-xx`; thiếu căn cứ → hạ về "Không chắc cần CSKH" |

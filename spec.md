@@ -144,7 +144,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
   | Chặn bằng luật trước khi tới model | Bước ① `chan_pham_vi`: sàn khác, tấn công, làm giả bằng chứng, tư vấn pháp lý bị từ chối bằng code, gọi model 0 lần (câu thử B10, B11, B12). |
 
 - **Phần nào còn giả:**
-  - **Model:** đã nối **thật**. **Model chính từ CP4: `gpt-6-luna` qua OpenAI** (lượt `run-3`, `run-4`). CP3 dùng `openai/gpt-oss-20b` qua Groq (lượt `run-1`, `run-2`, giữ làm lịch sử); đổi vì Groq miễn phí giới hạn 8.000 token / phút gây lỗi 429. `codebase/ai.py` hỗ trợ cả hai theo `MODEL_PROVIDER`. Máy chưa điền `.env` thì vẫn chạy chế độ giả (mọi câu trong phạm vi bị bước ⑤ hạ về "Không chắc cần CSKH").
+  - **Model:** đã nối **thật** — `openai/gpt-oss-20b` qua Groq (`codebase/ai.py`), dùng cho lượt 1 và lượt 2. Máy chưa điền `.env` thì vẫn chạy chế độ giả (mọi câu trong phạm vi bị bước ⑤ hạ về "Không chắc cần CSKH").
   - **Bước ① và ②** là luật từ khoá có dấu, viết tay — chưa hiểu câu gõ không dấu hay cách nói lạ.
   - **Dữ liệu chính sách** là thật nhưng là bản viết lại của một trang (`data/shopee_policy.md`), cần đối chiếu lại với trang gốc.
   - Không có dữ liệu đơn hàng thật: hệ thống chỉ biết những gì người mua tự kể.
@@ -179,21 +179,18 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 13 · tu_choi 3; 19/24 từ người dùng / data thật), khoá từ lượt 1 · metric: `eval/metric_spec.yaml` (3 metric: `ket_luan_dung`, `trich_dieu_khoan`, `tu_choi_dung`)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua, và 100% câu tu_choi qua."
 - Kết quả: lượt 1 **18/24 (75%)** — thuong 7/8 (88%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **chưa đạt chuẩn** (tu_choi đủ 100% nhưng tổng 75% < 80%) · lượt 2 **19/24 (79%)** — thuong 8/8 (100%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **vẫn chưa đạt chuẩn** (thiếu 1 câu để chạm 80%; cả 5 câu trượt đều là `kho`: B14, B15, B21, B23, B24) — run ID: `run-1@20261127-222913` / `run-2@20261128-093903` (cùng `openai/gpt-oss-20b` qua Groq, cùng 24 câu, cùng cách chấm) → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
-- **Kết quả trên model chính `gpt-6-luna` (OpenAI)** — cùng 24 câu, cùng chuẩn "đạt", cùng cách chấm: lượt 1 (code trước cải tiến) `run-3@20261128-105642` **__/24 (__%)** · lượt 2 (code sau cải tiến) `run-4@20261128-105932` **__/24 (__%)** → đạt chuẩn? __ *(chờ Nguyễn Mạnh Quân chấm cột `pass`; điền theo `python run.py score eval/run-3.csv` và `eval/run-4.csv`)*
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-1.csv` (`simulate-1@20261128-101751`, 50 phiên, seed 42; 38 phiên thành công, 12 phiên cuối hết quota ngày Groq; tỉ lệ đạt `19/24 = 79%` từ `eval/run-2.csv`)
 - Chi phí / task thành công: **$0.00077 (≈ 20 ₫)** (`openai/gpt-oss-20b` — đo và tính cùng model) · **$0.0056 (≈ 142 ₫)** (`gemini-2.5-flash`) · **$0.0184 (≈ 467 ₫)** (`gemini-4-hydrogen`)
 - Chi phí / tháng ở quy mô thật (`openai/gpt-oss-20b`, 5.000 / 20.000 / 50.000 người): thấp **$1.60 (≈ 40.619 ₫)** · cơ sở **$6.40 (≈ 162.478 ₫)** · cao **$15.99 (≈ 406.194 ₫)** (`gemini-4-hydrogen`: 964k / 3.85 triệu / 9.64 triệu ₫) → chi tiết `cost/cost-estimate.md`
-- **Phép đo GPT-6 Luna bổ sung:** `cost/openai-luna/simulate-1.csv`, run ID `simulate-1@20261128-110500`, 50 phiên, seed 42, 0 phiên lỗi. Chi phí model / tháng: thấp $2.38 · cơ sở $9.52 · cao $23.79. Chưa tính chi phí / task thành công do `run-4` chưa được chấm; không dùng tỷ lệ Groq cho model này. Thời gian tiết kiệm thực tế và chi phí ngoài model chưa đo.
-- Nhóm cũng chạy `cost/simulate-3.csv` (`simulate-3@20261128-110615`, 50 phiên GPT-6 Luna, 0 lỗi): chi phí model / tháng thấp $2.41 · cơ sở $9.62 · cao $24.06. Bảng gốc dùng tỉ lệ đạt 79% của Groq để tính $0.0012 / task như một giả định; không coi đó là tỷ lệ đạt đo được của Luna.
-- So với impact (§2), chưa kết luận mức tiết kiệm: ~21 phút là thời gian xử lý trước khi dùng trợ lý, chưa phải thời gian tiết kiệm đo được. Cần chấm `run-4` và tính chi phí ngoài model.
+- So với impact / người / tháng (§2): **Rất đáng làm** — chi phí chỉ **8 ₫ / người / tháng** (20 ₫ / task thành công) so với ~21 phút tìm hiểu chính sách mỗi lần và khoản tiền hoàn hàng chục đến hàng trăm nghìn đồng có nguy cơ bị mất oan (7/24 người khảo sát từng bỏ cuộc/không được hoàn).
 
 ## §9. Rủi ro & an toàn
 - **Dữ liệu:**
   - *Không thu:* khảo sát không hỏi email, tên, mã học viên. Câu Q8 (SĐT / Zalo / Discord của người sẵn sàng phỏng vấn) **không đưa vào repo** — `evidence/survey/results.csv` chỉ có 8 cột Q1–Q7, đã kiểm 0 dòng có thông tin liên lạc.
   - *Đã ẩn danh:* phỏng vấn chỉ ghi P1–P3 + vai; trích dẫn khảo sát bỏ tên; ảnh chụp app (`docs/img/`) đã che tên tài khoản, hạn mức SPayLater và số tiền vay. API key chỉ nằm trong `.env` (đã có trong `.gitignore`).
-  - *Không đưa vào model bên ngoài (Groq gói miễn phí ở CP3, OpenAI `gpt-6-luna` từ CP4):* dữ liệu cá nhân thật. Model chỉ nhận điều khoản chính sách công khai (`data/shopee_policy.md`) + câu thử viết lại từ khảo sát / phỏng vấn, không chứa thông tin nhận diện được người trả lời. *Giới hạn:* bản chạy thử chưa tự lọc nếu người dùng tự gõ SĐT, địa chỉ, mã đơn — khi dùng thật cần thêm bước lọc trước bước ④.
+  - *Không đưa vào model gói miễn phí (Groq):* dữ liệu cá nhân thật. Model chỉ nhận điều khoản chính sách công khai (`data/shopee_policy.md`) + câu thử viết lại từ khảo sát / phỏng vấn, không chứa thông tin nhận diện được người trả lời. *Giới hạn:* bản chạy thử chưa tự lọc nếu người dùng tự gõ SĐT, địa chỉ, mã đơn — khi dùng thật cần thêm bước lọc trước bước ④.
 - **AI không được làm, kể cả khi người dùng yêu cầu:**
   1. Gửi yêu cầu trả hàng, bấm nút hay thao tác trên tài khoản Shopee của người mua — chỉ soạn nháp (bước ⑥).
   2. Hứa chắc chắn được hoàn tiền / "100%" (câu thử B10).
@@ -236,9 +233,8 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 | 28/11/2026 09:39 (GMT+7) | Chạy **lượt 2** `run-2@20261128-093903` (cùng model `openai/gpt-oss-20b`, cùng 24 câu) → `eval/run-2.csv`, `traces/run-2.jsonl`; 0 lỗi kỹ thuật | Đo lại sau một lần cải tiến nhắm 6/6 câu trượt lượt 1 |
 | 28/11/2026 10:16 (GMT+7) | Chấm lượt 2 → **19/24 (79%)**: thuong 8/8 · kho 8/13 · tu_choi 3/3 — **vẫn chưa đạt chuẩn** (thiếu 1 câu); B09, B18 từ trượt → đạt, **B14 tệ đi** (đạt → trượt); ghi `eval/report.md` mục 1, 3, 4 và `eval/README.md` | Chuẩn "đạt" và `expected` giữ nguyên; chỉ điền cột `pass`, `ghi_chu` |
 | 28/11/2026 (sau 10:16) | `spec.md` §7 ghi kết quả lượt 2; viết §9 Rủi ro & an toàn (gồm lỗ hổng còn lại từ lượt 2: mã có thật nhưng sai ý ở B14, B24; thiếu cảnh báo SP-35 ở B23) và §10 phân công, dùng AI | Hoàn thiện §0–§10 cho CP4 |
-| 28/11/2026 11:03 (GMT+7) | Bổ sung connector OpenAI, chạy `run-3` (trước cải tiến) và `run-4` (sau cải tiến) với `gpt-6-luna`, cùng bộ 24 câu; bổ sung giá model trong `cost/personas.yaml` | Theo yêu cầu đổi model; giữ nguyên lượt Groq, kết quả mới chờ chấm theo metric đã khóa. |
 | 28/11/2026 11:32 (GMT+7) | `spec.md` §0: thêm màn hình "Tình huống bạn đang gặp?" (ảnh `docs/img/3.png`) làm bước 3, form yêu cầu chuyển sang ảnh `docs/img/4.png` (bước 4); bảng ảnh 3 → 4 cột | Chụp lại app thấy có thêm bước chọn tình huống trước form; ghi nhận lưu ý "Voucher / Shopee Xu / phí vận chuyển có thể không được hoàn lại" chưa có trong `data/shopee_policy.md` |
-| 28/11/2026 (sau 11:32) | **Đổi model chính sang `gpt-6-luna` (OpenAI).** Cặp lượt chính trên model mới: `run-3` (code trước cải tiến, như lượt 1) và `run-4` (code sau cải tiến, như lượt 2). **Giữ nguyên** `run-1`, `run-2` (Groq) làm lịch sử, không xoá / không sửa. Cập nhật `README.md`, `spec.md` §4 §7 §9, `eval/report.md`, slide 3, 5, 6 | Groq miễn phí giới hạn 8.000 token / phút: lượt chạy thiết kế mới bị 15/24 câu lỗi 429; chuẩn "đạt", bộ 24 câu và cách chấm giữ nguyên |
+| 28/11/2026 11:03–12:00 (GMT+7) | Thử đổi model sang `gpt-6-luna` (OpenAI): chạy 2 lượt thử trên cùng 24 câu — code trước cải tiến 10/24 (42%), sau cải tiến 13/24 (54%), câu `thuong` chỉ 1–2/8 → **kém hơn hẳn Groq, quay lại `openai/gpt-oss-20b` (Groq) làm model chính**; gỡ connector OpenAI và các file của lần thử khỏi repo (còn trong lịch sử git: commit `111cbc3`, `ece320a`, `0c3056b`) | Groq miễn phí bị lỗi 429 (8.000 token / phút) nên thử model khác; kết quả kém hơn nên không dùng. Chuẩn "đạt", bộ 24 câu và cách chấm giữ nguyên |
 |  |  |  |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)

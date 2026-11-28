@@ -14,13 +14,6 @@ và `API_KEY` trong `.env`. Không đưa key vào Git. Có thể dùng `--wait 1
 hoặc lớn hơn khi gặp giới hạn tốc độ; xem cột `error` vì `eval --try` vẫn có
 thể báo nối được khi chỉ một số câu thành công.
 
-Repo cũng hỗ trợ OpenAI bằng thư viện chuẩn: đặt `MODEL_PROVIDER=openai`,
-`MODEL_NAME=gpt-6-luna` và `API_KEY` trong `.env`. Đổi nhà cung cấp không sửa
-các lượt đã chạy: đánh giá lại tạo `run-N` mới, giữ nguyên CSV và trace cũ.
-Chạy `python run.py eval --try` trước, kiểm tra cột `error` và token thực tế;
-chỉ chạy đủ bộ sau khi kết nối thành công. Xem giá và giới hạn tại
-https://developers.openai.com/api/docs/models/gpt-6-luna.
-
 Chép `.env.example` thành `.env`, điền 3 dòng. Ví dụ:
 
 ```

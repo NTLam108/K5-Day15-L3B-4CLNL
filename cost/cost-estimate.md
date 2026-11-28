@@ -1,55 +1,40 @@
 # Chi phí khi dùng thật
 
-## Phép đo bổ sung: GPT-6 Luna
-
-- Kết quả gốc: `cost/openai-luna/simulate-1.csv`, `cost/openai-luna/simulate-1-summary.md` và `traces/openai-luna/simulate-1.jsonl`. Đặt trong thư mục riêng vì một commit khác của nhóm đã dùng tên `simulate-1` cho lượt Groq; nội dung gốc và run ID không sửa.
-- Run ID `simulate-1@20261128-110500`: 50 phiên, seed 42, 0 phiên lỗi; các persona có 16, 26, 8 phiên. Giá đo cùng model: $0.10 / 1 triệu token vào và $0.50 / 1 triệu token ra, theo `cost/personas.yaml`.
-- Theo bảng tổng hợp gốc: **$0.00094 / phiên**; chi phí model mỗi tháng thấp **$2.38**, cơ sở **$9.52**, cao **$23.79**. Các kịch bản người dùng và tỷ giá vẫn là giả định của nhóm; chưa bao gồm các chi phí ngoài model.
-- **Chưa có chi phí / task thành công:** `run-4` chưa chấm, không sử dụng tỷ lệ 79% của Groq cho GPT-6 Luna. Chi phí theo model khác trong bảng tổng hợp chỉ là tính lại theo giá, vì mỗi model có thể tách token khác nhau. Chưa đo thời gian tiết kiệm thực tế.
-
 > Điền ở guide bước 4.2, nộp ở CP4 14:30 Thứ Bảy 28/11.
-> Số **không điền tay**: sinh từ `cost/personas.yaml` → `python run.py simulate --rate-from eval/run-2.csv --wait 1` → chép bảng trong `cost/simulate-3-summary.md` vào đây.
+> Số **không điền tay**: sinh từ `cost/personas.yaml` → `python run.py simulate --rate-from eval/run-2.csv --wait 15` → chép bảng trong `cost/simulate-1-summary.md` vào đây.
 > Lúc build dùng gói miễn phí vẫn tính theo **giá gói trả phí** — đây là chi phí cho lúc đưa vào dùng thật.
 
 ## 1. Đầu vào
 
-**Lưu ý về bảng bên dưới:** lượt `simulate-3` của nhóm áp tỷ lệ 19/24 từ model Groq sang GPT-6 Luna theo `--rate-from`. Vì hai model khác nhau, các cột chi phí trên tác vụ / câu hỏi đạt là kịch bản giả định, chưa phải kết quả đo được của Luna. Chỉ kết luận sau khi `run-4` được chấm.
-
 - **Persona** (`cost/personas.yaml`): 3 kiểu khớp `spec.md` §2 (`don_nho_bo_som` 45%, 0.5 lần/tháng, 1 lượt · `trung_binh_may_mo` 40%, 0.6 lần/tháng, 2 lượt · `don_cao_lam_toi_cung` 15%, 0.5 lần/tháng, 3 lượt). Nguồn: khảo sát Q3 (`n = 24`, `evidence/survey/results.csv`) & phỏng vấn `P1–P3` (`evidence/interviews/`).
 - **Số người dùng thật** 3 kịch bản: thấp `5.000` · cơ sở `20.000` · cao `50.000` người/tháng. Nguồn: Shopee Mall Việt Nam đạt 28 triệu người mua sắm tích cực ([VnEconomy](https://vneconomy.vn/shopee-tiep-tuc-tang-truong-voi-chien-luoc-nguoi-dung-lam-trung-tam.htm), xem 27/11/2026); 3 mức quy mô nhóm người mua 18–30 tuổi dùng trợ lý đổi trả là *(tự ước tính)*.
-- **Giá** 8 mức model (gồm `gpt-6-luna` đang đo 50/50 phiên, `openai/gpt-oss-20b` dùng ở `run-2`, và các mức tham chiếu):
-  - `gpt-6-luna`: $0.10 / 1M vào · $0.50 / 1M ra ([OpenAI Docs](https://developers.openai.com/api/docs/models/gpt-6-luna), xem 28/11/2026)
-  - `gpt-4o-mini`: $0.15 / 1M vào · $0.60 / 1M ra ([OpenAI Pricing](https://openai.com/api/pricing/), xem 28/11/2026)
+- **Giá** 5 mức model (gồm chính model đang đo `openai/gpt-oss-20b` và 4 mức tham chiếu, xem 27–28/11/2026):
   - `openai/gpt-oss-20b`: $0.075 / 1M vào · $0.30 / 1M ra ([Groq Docs](https://console.groq.com/docs/models), xem 28/11/2026)
-  - `openai/gpt-oss-120b`: $0.15 / 1M vào · $0.60 / 1M ra ([Groq Docs](https://console.groq.com/docs/models), xem 28/11/2026)
   - `gemini-2.5-flash-lite`: $0.10 / 1M vào · $0.40 / 1M ra ([Google AI Pricing](https://ai.google.dev/gemini-api/docs/pricing), xem 27/11/2026)
   - `gemini-3.1-flash-lite`: $0.25 / 1M vào · $1.50 / 1M ra (`further-reading/model-prices.md`)
   - `gemini-2.5-flash`: $0.30 / 1M vào · $2.50 / 1M ra ([Google AI Pricing](https://ai.google.dev/gemini-api/docs/pricing), xem 27/11/2026)
   - `gemini-4-hydrogen`: $1.50 / 1M vào · $7.50 / 1M ra (`further-reading/model-prices.md`)
-- **Tỉ lệ đạt** dùng để tính: **19/24 (79%)** — lượt `run-2@20261128-093903` (`eval/run-2.csv`, chạy trên `openai/gpt-oss-20b`).
-- Đo token trên model **`gpt-6-luna`** (50/50 phiên thành công, `0/50` lỗi), tính giá model `gpt-6-luna` (cùng model đo) và các model tham chiếu (lưu ý: `eval/run-2.csv` đo tỉ lệ đạt trên `openai/gpt-oss-20b`, model khác bộ tách token thì số token thật có thể lệch nhẹ; nhóm giữ nguyên kết quả `simulate-1` trên `openai/gpt-oss-20b` trong repo để đối chiếu chéo).
+- **Tỉ lệ đạt** dùng để tính: **19/24 (79%)** — lượt `run-2@20261128-093903` (`eval/run-2.csv`).
+- Đo token trên model `openai/gpt-oss-20b` (Groq), tính giá model `openai/gpt-oss-20b` (đo và tính cùng model) và các model tham chiếu `gemini-2.5-flash-lite`, `gemini-2.5-flash`, `gemini-3.1-flash-lite`, `gemini-4-hydrogen` (lưu ý: model khác bộ tách token thì số token thật có thể lệch).
 
 ## 2. Kết quả mô phỏng
 
-Lượt mô phỏng: `cost/simulate-3.csv` · run ID `simulate-3@20261128-110615` · `50` phiên (**50/50 thành công, 0 lỗi**; đủ cả 3 persona: `don_nho_bo_som` 16 · `trung_binh_may_mo` 26 · `don_cao_lam_toi_cung` 8) · seed `42` · tỷ giá `1 USD = 25.400 ₫`.
+Lượt mô phỏng: `cost/simulate-1.csv` · run ID `simulate-1@20261128-101751` · `50` phiên (38 phiên thành công, 12 phiên cuối hết quota ngày Groq, không sửa tay; đủ cả 3 persona: `don_nho_bo_som` 12 · `trung_binh_may_mo` 22 · `don_cao_lam_toi_cung` 4) · seed `42` · tỷ giá `1 USD = 25.400 ₫`.
 
-*(Chép nguyên bảng từ `cost/simulate-3-summary.md`)*
+*(Chép nguyên bảng từ `cost/simulate-1-summary.md`)*
 
 | Model (giá) | Chi phí / phiên | Chi phí / task thành công | Chi phí / câu hỏi đạt | Chi phí / tháng — thấp (5.000 người) | Chi phí / tháng — cơ sở (20.000 người) | Chi phí / tháng — cao (50.000 người) | Chi phí / người / tháng (cơ sở) |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **gpt-6-luna** (vào 0.1 · ra 0.5 $/1M — *cùng model đo*) | $0.00096 (≈ 24 ₫) | $0.0012 (≈ 31 ₫) | $0.00066 (≈ 17 ₫) | $2.41 (≈ 61.116 ₫) | $9.62 (≈ 244.464 ₫) | $24.06 (≈ 611.160 ₫) | $0.00048 (≈ 12 ₫) |
-| gpt-4o-mini (vào 0.15 · ra 0.6 $/1M) | $0.0012 (≈ 31 ₫) | $0.0015 (≈ 39 ₫) | $0.00083 (≈ 21 ₫) | $3.04 (≈ 77.268 ₫) | $12.17 (≈ 309.074 ₫) | $30.42 (≈ 772.685 ₫) | $0.00061 (≈ 15 ₫) |
-| openai/gpt-oss-120b (vào 0.15 · ra 0.6 $/1M) | $0.0012 (≈ 31 ₫) | $0.0015 (≈ 39 ₫) | $0.00083 (≈ 21 ₫) | $3.04 (≈ 77.268 ₫) | $12.17 (≈ 309.074 ₫) | $30.42 (≈ 772.685 ₫) | $0.00061 (≈ 15 ₫) |
-| openai/gpt-oss-20b (vào 0.075 · ra 0.3 $/1M) | $0.00060 (≈ 15 ₫) | $0.00076 (≈ 19 ₫) | $0.00041 (≈ 11 ₫) | $1.52 (≈ 38.634 ₫) | $6.08 (≈ 154.537 ₫) | $15.21 (≈ 386.342 ₫) | $0.00030 (≈ 8 ₫) |
-| gemini-2.5-flash-lite (vào 0.1 · ra 0.4 $/1M) | $0.00081 (≈ 20 ₫) | $0.0010 (≈ 26 ₫) | $0.00055 (≈ 14 ₫) | $2.03 (≈ 51.512 ₫) | $8.11 (≈ 206.049 ₫) | $20.28 (≈ 515.123 ₫) | $0.00041 (≈ 10 ₫) |
-| gemini-2.5-flash (vào 0.3 · ra 2.5 $/1M) | $0.0044 (≈ 111 ₫) | $0.0055 (≈ 140 ₫) | $0.0030 (≈ 76 ₫) | $11.00 (≈ 279.384 ₫) | $44.00 (≈ 1.117.538 ₫) | $109.99 (≈ 2.793.845 ₫) | $0.0022 (≈ 56 ₫) |
-| gemini-3.1-flash-lite (vào 0.25 · ra 1.5 $/1M) | $0.0028 (≈ 70 ₫) | $0.0035 (≈ 89 ₫) | $0.0019 (≈ 48 ₫) | $6.96 (≈ 176.799 ₫) | $27.84 (≈ 707.196 ₫) | $69.61 (≈ 1.767.991 ₫) | $0.0014 (≈ 35 ₫) |
-| gemini-4-hydrogen (vào 1.5 · ra 7.5 $/1M) | $0.0143 (≈ 364 ₫) | $0.0181 (≈ 460 ₫) | $0.0098 (≈ 250 ₫) | $36.09 (≈ 916.740 ₫) | $144.37 (≈ 3.666.958 ₫) | $360.92 (≈ 9.167.396 ₫) | $0.0072 (≈ 183 ₫) |
+| **openai/gpt-oss-20b** (vào 0.075 · ra 0.3 $/1M — *cùng model đo*) | $0.00061 (≈ 16 ₫) | $0.00077 (≈ 20 ₫) | $0.00043 (≈ 11 ₫) | $1.60 (≈ 40.619 ₫) | $6.40 (≈ 162.478 ₫) | $15.99 (≈ 406.194 ₫) | $0.00032 (≈ 8 ₫) |
+| gemini-2.5-flash-lite (vào 0.1 · ra 0.4 $/1M) | $0.00082 (≈ 21 ₫) | $0.0010 (≈ 26 ₫) | $0.00058 (≈ 15 ₫) | $2.13 (≈ 54.159 ₫) | $8.53 (≈ 216.637 ₫) | $21.32 (≈ 541.592 ₫) | $0.00043 (≈ 11 ₫) |
+| gemini-3.1-flash-lite (vào 0.25 · ra 1.5 $/1M) | $0.0028 (≈ 71 ₫) | $0.0035 (≈ 90 ₫) | $0.0020 (≈ 50 ₫) | $7.31 (≈ 185.795 ₫) | $29.26 (≈ 743.180 ₫) | $73.15 (≈ 1.857.951 ₫) | $0.0015 (≈ 37 ₫) |
+| gemini-2.5-flash (vào 0.3 · ra 2.5 $/1M) | $0.0044 (≈ 113 ₫) | $0.0056 (≈ 142 ₫) | $0.0031 (≈ 79 ₫) | $11.56 (≈ 293.510 ₫) | $46.22 (≈ 1.174.040 ₫) | $115.56 (≈ 2.935.100 ₫) | $0.0023 (≈ 59 ₫) |
+| gemini-4-hydrogen (vào 1.5 · ra 7.5 $/1M) | $0.0145 (≈ 369 ₫) | $0.0184 (≈ 467 ₫) | $0.0103 (≈ 261 ₫) | $37.94 (≈ 963.579 ₫) | $151.74 (≈ 3.854.316 ₫) | $379.36 (≈ 9.635.790 ₫) | $0.0076 (≈ 193 ₫) |
 
 Chi phí / task thành công = chi phí trung bình mỗi phiên ÷ tỉ lệ đạt (79%) — **không coi như đạt 100%**.
 
 ## 3. So với impact
 
 - **Impact / người / tháng (`spec.md` §2):** Mỗi người mua gặp hàng lỗi (~0.5 lần/tháng) đang tốn trung bình **~21 phút/lần** (tức ~10.5 phút/tháng; người làm tới cùng mất 35–50 phút) để đọc chính sách, tìm mẹo và chuẩn bị bằng chứng, chưa kể rủi ro bỏ cuộc mất tiền (7/24 người khảo sát).
-- **Chi phí / người / tháng (cơ sở, model `gpt-6-luna`):** **$0.00048 (≈ 12 ₫) / người / tháng** (chỉ **31 ₫ / task thành công**); tổng chi phí vận hành 20.000 người dùng/tháng chỉ **$9.62 (≈ 244.464 ₫)**. Nếu dùng model rẻ hơn (`openai/gpt-oss-20b`), chi phí chỉ **8 ₫ / người / tháng** (~154.537 ₫/tháng cho 20.000 người); ngay cả khi dùng model mạnh `gemini-4-hydrogen` cũng chỉ **183 ₫ / người / tháng**.
-- **Kết luận một dòng — đáng làm không:** **Rất đáng làm** — chỉ tốn khoảng **12 ₫ / người / tháng** (hoặc **31 ₫ cho mỗi ca tư vấn thành công** trên `gpt-6-luna`) để tiết kiệm ~10–20 phút tìm hiểu chính sách và giảm nguy cơ mất tiền oan trên các đơn hàng hàng chục đến hàng trăm nghìn đồng.
+- **Chi phí / người / tháng (cơ sở, model `openai/gpt-oss-20b`):** **$0.00032 (≈ 8 ₫) / người / tháng** (chỉ **20 ₫ / task thành công**); tổng chi phí vận hành 20.000 người dùng/tháng chỉ **$6.40 (≈ 162.478 ₫)**. Ngay cả khi dùng model mạnh `gemini-4-hydrogen`, chi phí cũng chỉ **193 ₫ / người / tháng** (~3.85 triệu ₫/tháng cho 20.000 người).
+- **Kết luận một dòng — đáng làm không:** **Rất đáng làm** — chỉ tốn khoảng **8 ₫ / người / tháng** (hoặc **20 ₫ cho mỗi ca tư vấn thành công**) để tiết kiệm ~10–20 phút tìm hiểu chính sách và giảm nguy cơ mất tiền oan trên các đơn hàng hàng chục đến hàng trăm nghìn đồng.
