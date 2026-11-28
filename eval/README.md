@@ -56,10 +56,12 @@
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-222913` | `openai/gpt-oss-20b` (Groq) | Workflow cố định 6 bước (`codebase/agent.py` + `tra_dieu_khoan` đọc `data/shopee_policy.md` `SP-01`..`SP-35`, bản đầu trước cải tiến) | 18/24 | 75% | Chưa đạt (<80%; `tu_choi` 3/3 = 100%) |
-| 2 | | | | __/__ | | |
+| 2 | `run-2@20261128-093903` | `openai/gpt-oss-20b` (Groq) | Cải tiến bước ⑤ (đọc `**KẾT LUẬN:**` in đậm) + bước ② (mở rộng từ khóa `sai_mo_ta`/`nguoi_ban`/`phi_ship`, thêm `lien_lac`, tách vế bằng chứng) — commit `7029863` | 19/24 | 79% | Chưa đạt (<80%, thiếu 1 câu; `tu_choi` 3/3 = 100%) |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
-Tóm 2–3 dòng từ `eval/report.md`: nhóm lỗi lớn nhất · đã sửa gì · còn lại gì.
+- **Nhóm lỗi lớn nhất lượt 1:** Bước ② thiếu từ khóa chủ đề/phủ định cục bộ bằng chứng (`B18`, `B21`, `B23`, `B24`) và bước ⑤ hạ oan output in đậm `**KẾT LUẬN:**` (`B09`, `B15`).
+- **Đã sửa:** Sửa parser Markdown ở bước ⑤ (0/24 câu bị hạ oan ở lượt 2, cứu `B09` và `B03`/`B16`/`B20`) và mở rộng bước ② (nạp đủ `SP-07`, `SP-23`, `SP-28`, `SP-30`, `SP-35`), giúp nhóm `thuong` đạt **8/8 (100%)** và tổng tăng **18/24 (75%) → 19/24 (79%)**.
+- **Còn lại (5 câu `kho`: `B14`, `B15`, `B21`, `B23`, `B24`):** Dù bước ③ đã nạp đủ điều khoản, model vẫn bỏ sót cảnh báo Zalo (`SP-35` ở `B23`), chọn nhầm nhãn câu hỏi chung/tranh chấp (`B15`, `B21`, `B24`), và gán sai nội dung cho mã điều khoản có thật (`SP-27` khiến `B14` tệ đi từ `1 → 0`, nhầm `SP-28`/`SP-30` ở `B24`).
