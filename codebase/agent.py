@@ -73,9 +73,9 @@ def chan_pham_vi(text):
 
 # ---------- ② tách thông tin ----------
 _CHU_DE = [
-    ("hang_loi", r"lỗi|hỏng|\bhư\b|hư hại|móp|nứt|vỡ|\bbể\b|rách|bung|không chạy|không lên|trầy"),
+    ("hang_loi", r"lỗi|hỏng|\bhư\b|hư hại|móp|nứt|vỡ|\bbể\b|rách|bung|không chạy|không lên|trầy|lem nhem"),
     ("sai_mau", r"sai (mẫu|màu|size|cỡ|kích)|nhầm|giao sai|khác mẫu"),
-    ("sai_mo_ta", r"khác (mô tả|hình)|không giống|tráo|cục gỗ|treo đầu dê"),
+    ("sai_mo_ta", r"khác (mô tả|hình)|không giống|tráo|cục gỗ|treo đầu dê|lệch.{0,35}(ảnh|hình|mô tả)|(?:ảnh|hình|mô tả).{0,35}lệch"),
     ("khong_nhan_hang", r"không nhận được|chưa nhận được|thiếu hàng|giao thiếu|hàng giả|hàng nhái|fake"),
     ("het_han", r"hết hạn|hạn sử dụng|\bdate\b"),
     ("doi_y", r"đổi ý|không hợp|không thích|không còn nhu cầu|không vừa|cắt (tem|mác)"),
@@ -83,8 +83,9 @@ _CHU_DE = [
     ("cod", r"\bcod\b|thanh toán khi nhận|chưa liên kết|liên kết"),
     ("shopee_mall", r"shopee\s*mall|\bmall\b"),
     ("hoan_tien", r"hoàn tiền|tiền về|hoàn ngay|bao lâu"),
-    ("nguoi_ban", r"shop (không|chưa) (trả lời|phản hồi|đồng ý)|người bán|shop bảo|shop từ chối|xác nhận"),
-    ("phi_ship", r"phí ship|phí vận chuyển|tốn phí|miễn phí|tự sắp xếp"),
+    ("nguoi_ban", r"(?:shop|người bán).{0,25}(?:không|chưa) (?:trả lời|phản hồi|đồng ý)|(?:shop|người bán).{0,20}im lặng|người bán|shop bảo|shop từ chối|xác nhận"),
+    ("phi_ship", r"phí ship|phí vận chuyển|mất phí|tốn phí|miễn phí|tự sắp xếp|phí gửi|ship hoàn"),
+    ("lien_lac", r"zalo|facebook|messenger|nhắn tin ngoài|ngoài (?:sàn|shopee|hệ thống)|liên lạc ngoài"),
     ("bang_chung", r"video|ảnh|chụp|quay|bằng chứng|tem niêm phong"),
     ("thoi_han", r"ngày|hạn|quá|trễ|muộn"),
     ("pham_vi", r"quy tắc chung|chính sách chung|mỗi shop"),
@@ -97,12 +98,16 @@ def tach_thong_tin(text):
     chu_de = [ten for ten, pat in _CHU_DE if re.search(pat, low)]
     m = _NGAY.search(low)
     so_ngay = int(m.group(1)) if m else (1 if "hôm qua" in low else 0 if "hôm nay" in low else None)
-    if re.search(r"(không|chưa|quên)\s*(có\s*)?(quay|chụp|có video)", low):
-        bang_chung = "không"
-    elif re.search(r"video|ảnh|chụp", low):
-        bang_chung = "có"
-    else:
-        bang_chung = None
+    # Tách các vế để một phủ định cục bộ không phủ nhận bằng chứng ở vế khác.
+    parts = re.split(r"\b(?:nhưng|tuy nhiên|còn|mà)\b|[.;]", low)
+    positive = negative = False
+    for part in parts:
+        if re.search(r"\b(?:không|chưa|quên|chẳng)\s*(?:có\s*)?(?:quay|chụp|video|ảnh|clip)", part):
+            negative = True
+        elif re.search(r"\b(?:quay|chụp|video|ảnh|clip|bằng chứng)\b", part):
+            positive = True
+    bang_chung = "có nhưng có phần chưa rõ" if positive and negative else (
+        "có" if positive else "không" if negative else None)
     thieu = []
     if so_ngay is None:
         thieu.append("số ngày từ lúc đơn giao thành công")
@@ -116,7 +121,8 @@ def tach_thong_tin(text):
 # ---------- ⑤ kiểm căn cứ ----------
 def kiem_can_cu(reply):
     """Trả (nhãn, các mã hợp lệ, vấn đề) — vấn đề rỗng nghĩa là qua."""
-    first = next((ln for ln in reply.splitlines() if ln.strip().upper().startswith("KẾT LUẬN")), "")
+    lines = (re.sub(r"[*_`]", "", ln).strip() for ln in reply.splitlines())
+    first = next((ln for ln in lines if ln.upper().startswith("KẾT LUẬN")), "")
     nhan = next((n for n in NHAN if n.lower() in first.lower()), None)
     codes = re.findall(r"SP-\d{2}", reply)
     bad = sorted(set(c for c in codes if c not in ALL_CODES))
