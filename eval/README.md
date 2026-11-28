@@ -57,13 +57,13 @@
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-222913` | `openai/gpt-oss-20b` (Groq) | Workflow cố định 6 bước (`codebase/agent.py` + `tra_dieu_khoan` đọc `data/shopee_policy.md` `SP-01`..`SP-35`, bản đầu trước cải tiến) | 18/24 | 75% | Chưa đạt (<80%; `tu_choi` 3/3 = 100%) |
 | 2 | `run-2@20261128-093903` | `openai/gpt-oss-20b` (Groq) | Cải tiến bước ⑤ (đọc `**KẾT LUẬN:**` in đậm) + bước ② (mở rộng từ khóa `sai_mo_ta`/`nguoi_ban`/`phi_ship`, thêm `lien_lac`, tách vế bằng chứng) — commit `7029863` | 19/24 | 79% | Chưa đạt (<80%, thiếu 1 câu; `tu_choi` 3/3 = 100%) |
-| 3 | `run-3@20261128-105642` | `gpt-6-luna` (OpenAI) | Mã `agent.py` trước cải tiến CP4 từ `84e6a0e`, connector OpenAI mới; chạy trên cùng bộ 24 câu và data hiện tại | Chưa chấm | — | Chưa xác định |
-| 4 | `run-4@20261128-105932` | `gpt-6-luna` (OpenAI) | Mã sau cải tiến CP4 `7029863`, connector OpenAI mới; cùng bộ 24 câu | Chưa chấm | — | Chưa xác định |
+| 3 | `run-3@20261128-105642` | `gpt-6-luna` (OpenAI) | Mã `agent.py` trước cải tiến CP4 từ `84e6a0e`, connector OpenAI mới; chạy trên cùng bộ 24 câu và data hiện tại | 10/24 | 42% | Chưa đạt (<80%; `tu_choi` 3/3 = 100%) |
+| 4 | `run-4@20261128-105932` | `gpt-6-luna` (OpenAI) | Mã sau cải tiến CP4 `7029863`, connector OpenAI mới; cùng bộ 24 câu | 13/24 | 54% | Chưa đạt (<80%; `tu_choi` 3/3 = 100%) |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 
 ## 6. Lỗi chính
 
 - **Nhóm lỗi lớn nhất lượt 1:** Bước ② thiếu từ khóa chủ đề/phủ định cục bộ bằng chứng (`B18`, `B21`, `B23`, `B24`) và bước ⑤ hạ oan output in đậm `**KẾT LUẬN:**` (`B09`, `B15`).
-- **Đã sửa:** Sửa parser Markdown ở bước ⑤ (0/24 câu bị hạ oan ở lượt 2, cứu `B09` và `B03`/`B16`/`B20`) và mở rộng bước ② (nạp đủ `SP-07`, `SP-23`, `SP-28`, `SP-30`, `SP-35`), giúp nhóm `thuong` đạt **8/8 (100%)** và tổng tăng **18/24 (75%) → 19/24 (79%)**.
-- **Còn lại (5 câu `kho`: `B14`, `B15`, `B21`, `B23`, `B24`):** Dù bước ③ đã nạp đủ điều khoản, model vẫn bỏ sót cảnh báo Zalo (`SP-35` ở `B23`), chọn nhầm nhãn câu hỏi chung/tranh chấp (`B15`, `B21`, `B24`), và gán sai nội dung cho mã điều khoản có thật (`SP-27` khiến `B14` tệ đi từ `1 → 0`, nhầm `SP-28`/`SP-30` ở `B24`).
+- **Đã sửa (commit `7029863`):** Sửa parser Markdown ở bước ⑤ (0/24 câu bị hạ oan) và mở rộng bước ② (nạp đủ `SP-07`, `SP-23`, `SP-28`, `SP-30`, `SP-35`), giúp `openai/gpt-oss-20b` tăng **18/24 (75%) → 19/24 (79%)** (`thuong` **8/8 = 100%**) và model chính `gpt-6-luna` tăng **10/24 (42%) → 13/24 (54%)** (giải trọn vẹn `B15`, `B24` và bắt đúng cảnh báo Zalo `SP-35` ở `B23`, **0 bịa/nhầm mã**).
+- **Còn lại:** Trên model chính `gpt-6-luna` (`run-4`: 11 câu trượt), 100% lỗi nằm ở `ket_luan_dung` do model tuân thủ prompt quá cứng (bắt bẻ câu chữ "nhận hôm qua/X ngày" vs "ngày cập nhật giao thành công" ở 7 câu `B01`/`B02`/`B16`–`B19`/`B23` và né nhãn `Chưa đủ điều kiện` ở `B06`/`B09`/`B22`); còn trên Groq `run-2` (5 câu `kho`) là lỗi bỏ sót `SP-35` (`B23`), nhầm nhãn (`B15`/`B21`/`B24`) và gán sai nội dung mã (`B14` tệ đi `1 → 0`).
