@@ -183,8 +183,9 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-1.csv` (`simulate-1@20261128-101751`, 50 phiên, seed 42; 38 phiên thành công, 12 phiên cuối hết quota ngày Groq; tỉ lệ đạt `19/24 = 79%` từ `eval/run-2.csv`)
 - Chi phí / task thành công: **$0.00077 (≈ 20 ₫)** (`openai/gpt-oss-20b` — đo và tính cùng model) · **$0.0056 (≈ 142 ₫)** (`gemini-2.5-flash`) · **$0.0184 (≈ 467 ₫)** (`gemini-4-hydrogen`)
 - Chi phí / tháng ở quy mô thật (`openai/gpt-oss-20b`, 5.000 / 20.000 / 50.000 người): thấp **$1.60 (≈ 40.619 ₫)** · cơ sở **$6.40 (≈ 162.478 ₫)** · cao **$15.99 (≈ 406.194 ₫)** (`gemini-4-hydrogen`: 964k / 3.85 triệu / 9.64 triệu ₫) → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): **Rất đáng làm** — chi phí chỉ **8 ₫ / người / tháng** (20 ₫ / task thành công) so với ~21 phút tìm hiểu chính sách mỗi lần và khoản tiền hoàn hàng chục đến hàng trăm nghìn đồng có nguy cơ bị mất oan (7/24 người khảo sát từng bỏ cuộc/không được hoàn).
 - **Phép đo GPT-6 Luna bổ sung:** `cost/openai-luna/simulate-1.csv`, run ID `simulate-1@20261128-110500`, 50 phiên, seed 42, 0 phiên lỗi. Chi phí model / tháng: thấp $2.38 · cơ sở $9.52 · cao $23.79. Chưa tính chi phí / task thành công do `run-4` chưa được chấm; không dùng tỷ lệ Groq cho model này. Thời gian tiết kiệm thực tế và chi phí ngoài model chưa đo.
+- Nhóm cũng chạy `cost/simulate-3.csv` (`simulate-3@20261128-110615`, 50 phiên GPT-6 Luna, 0 lỗi): chi phí model / tháng thấp $2.41 · cơ sở $9.62 · cao $24.06. Bảng gốc dùng tỉ lệ đạt 79% của Groq để tính $0.0012 / task như một giả định; không coi đó là tỷ lệ đạt đo được của Luna.
+- So với impact (§2), chưa kết luận mức tiết kiệm: ~21 phút là thời gian xử lý trước khi dùng trợ lý, chưa phải thời gian tiết kiệm đo được. Cần chấm `run-4` và tính chi phí ngoài model.
 
 ## §9. Rủi ro & an toàn
 - **Dữ liệu:**
