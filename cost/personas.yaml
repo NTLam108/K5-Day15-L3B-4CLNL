@@ -30,6 +30,10 @@ personas:           # 3 kiểu người dùng khớp spec.md §2; share cộng l
     source: "khảo sát Q3 (n = 24, evidence/survey/results.csv) & phỏng vấn P2 (evidence/interviews/P2.md, spec.md §2)"
 
 prices:             # USD / 1 triệu token — gồm các model đo token (OpenAI / Groq) + các mức model tham chiếu
+  - model: gpt-6-luna
+    input: 0.10
+    output: 0.50
+    source: "https://developers.openai.com/api/docs/models/gpt-6-luna · xem 28/11/2026 (model OpenAI đo token)"
   - model: gpt-4o-mini
     input: 0.15
     output: 0.60
