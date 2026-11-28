@@ -29,7 +29,19 @@ personas:           # 3 kiểu người dùng khớp spec.md §2; share cộng l
     turns_per_session: 3    # hỏi điều kiện, hỏi cách chọn lý do, hỏi chi tiết video bổ sung khi bị shop từ chối
     source: "khảo sát Q3 (n = 24, evidence/survey/results.csv) & phỏng vấn P2 (evidence/interviews/P2.md, spec.md §2)"
 
-prices:             # USD / 1 triệu token — giá công khai Google AI Studio (https://ai.google.dev/gemini-api/docs/pricing)
+prices:             # USD / 1 triệu token — gồm các model đo token (OpenAI / Groq) + các mức model tham chiếu
+  - model: gpt-4o-mini
+    input: 0.15
+    output: 0.60
+    source: "https://openai.com/api/pricing/ · xem 28/11/2026 (model OpenAI đo token)"
+  - model: openai/gpt-oss-120b
+    input: 0.15
+    output: 0.60
+    source: "https://console.groq.com/docs/models · xem 28/11/2026 (model Groq 120B)"
+  - model: openai/gpt-oss-20b
+    input: 0.075
+    output: 0.30
+    source: "https://console.groq.com/docs/models · xem 28/11/2026 (model thật đang đo token trên Groq)"
   - model: gemini-2.5-flash-lite
     input: 0.10
     output: 0.40

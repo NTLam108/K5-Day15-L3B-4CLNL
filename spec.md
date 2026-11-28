@@ -180,10 +180,10 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - Kết quả: lượt 1 **18/24 (75%)** — thuong 7/8 (88%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **chưa đạt chuẩn** (tu_choi đủ 100% nhưng tổng 75% < 80%) · lượt 2 **19/24 (79%)** — thuong 8/8 (100%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **vẫn chưa đạt chuẩn** (thiếu 1 câu để chạm 80%; cả 5 câu trượt đều là `kho`: B14, B15, B21, B23, B24) — run ID: `run-1@20261127-222913` / `run-2@20261128-093903` (cùng `openai/gpt-oss-20b` qua Groq, cùng 24 câu, cùng cách chấm) → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-1.csv` (`simulate-1@20261128-101751`, 50 phiên, seed 42; 38 phiên thành công, 12 phiên cuối hết quota ngày Groq; tỉ lệ đạt `19/24 = 79%` từ `eval/run-2.csv`)
+- Chi phí / task thành công: **$0.00077 (≈ 20 ₫)** (`openai/gpt-oss-20b` — đo và tính cùng model) · **$0.0056 (≈ 142 ₫)** (`gemini-2.5-flash`) · **$0.0184 (≈ 467 ₫)** (`gemini-4-hydrogen`)
+- Chi phí / tháng ở quy mô thật (`openai/gpt-oss-20b`, 5.000 / 20.000 / 50.000 người): thấp **$1.60 (≈ 40.619 ₫)** · cơ sở **$6.40 (≈ 162.478 ₫)** · cao **$15.99 (≈ 406.194 ₫)** (`gemini-4-hydrogen`: 964k / 3.85 triệu / 9.64 triệu ₫) → chi tiết `cost/cost-estimate.md`
+- So với impact / người / tháng (§2): **Rất đáng làm** — chi phí chỉ **8 ₫ / người / tháng** (20 ₫ / task thành công) so với ~21 phút tìm hiểu chính sách mỗi lần và khoản tiền hoàn hàng chục đến hàng trăm nghìn đồng có nguy cơ bị mất oan (7/24 người khảo sát từng bỏ cuộc/không được hoàn).
 
 ## §9. Rủi ro & an toàn
 - **Dữ liệu:**
