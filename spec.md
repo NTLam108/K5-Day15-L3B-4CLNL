@@ -177,7 +177,7 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 13 · tu_choi 3; 19/24 từ người dùng / data thật), khoá từ lượt 1 · metric: `eval/metric_spec.yaml` (3 metric: `ket_luan_dung`, `trich_dieu_khoan`, `tu_choi_dung`)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 80% câu qua, và 100% câu tu_choi qua."
-- Kết quả: lượt 1 **18/24 (75%)** — thuong 7/8 (88%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **chưa đạt chuẩn** (tu_choi đủ 100% nhưng tổng 75% < 80%) · lượt 2: chưa chạy (trước CP4) — run ID: `run-1@20261127-222913` (`openai/gpt-oss-20b`, Groq) · lượt 2: chưa có → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **18/24 (75%)** — thuong 7/8 (88%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **chưa đạt chuẩn** (tu_choi đủ 100% nhưng tổng 75% < 80%) · lượt 2 **19/24 (79%)** — thuong 8/8 (100%) · kho 8/13 (62%) · tu_choi 3/3 (100%) → **vẫn chưa đạt chuẩn** (thiếu 1 câu để chạm 80%; cả 5 câu trượt đều là `kho`: B14, B15, B21, B23, B24) — run ID: `run-1@20261127-222913` / `run-2@20261128-093903` (cùng `openai/gpt-oss-20b` qua Groq, cùng 24 câu, cùng cách chấm) → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -186,13 +186,34 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 - So với impact / người / tháng (§2): đáng làm không, vì sao:
 
 ## §9. Rủi ro & an toàn
-- Dữ liệu: đã ẩn danh gì, không thu gì, không đưa gì vào model gói miễn phí:
-- AI **không được** làm gì kể cả khi người dùng yêu cầu:
-- Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
+- **Dữ liệu:**
+  - *Không thu:* khảo sát không hỏi email, tên, mã học viên. Câu Q8 (SĐT / Zalo / Discord của người sẵn sàng phỏng vấn) **không đưa vào repo** — `evidence/survey/results.csv` chỉ có 8 cột Q1–Q7, đã kiểm 0 dòng có thông tin liên lạc.
+  - *Đã ẩn danh:* phỏng vấn chỉ ghi P1–P3 + vai; trích dẫn khảo sát bỏ tên; ảnh chụp app (`docs/img/`) đã che tên tài khoản, hạn mức SPayLater và số tiền vay. API key chỉ nằm trong `.env` (đã có trong `.gitignore`).
+  - *Không đưa vào model gói miễn phí (Groq):* dữ liệu cá nhân thật. Model chỉ nhận điều khoản chính sách công khai (`data/shopee_policy.md`) + câu thử viết lại từ khảo sát / phỏng vấn, không chứa thông tin nhận diện được người trả lời. *Giới hạn:* bản chạy thử chưa tự lọc nếu người dùng tự gõ SĐT, địa chỉ, mã đơn — khi dùng thật cần thêm bước lọc trước bước ④.
+- **AI không được làm, kể cả khi người dùng yêu cầu:**
+  1. Gửi yêu cầu trả hàng, bấm nút hay thao tác trên tài khoản Shopee của người mua — chỉ soạn nháp (bước ⑥).
+  2. Hứa chắc chắn được hoàn tiền / "100%" (câu thử B10).
+  3. Hướng dẫn khai sai lý do trả hàng, chỉnh sửa hay làm giả ảnh / video / ngày (B09, B12).
+  4. Tư vấn pháp lý, soạn đơn kiện; kết luận cho đơn ở sàn khác (B11, B12).
+  5. Đưa quy định, số ngày, số tiền không có trong `data/shopee_policy.md` (vd số ngày tiền về — SP-33 không ghi).
+  6. Khuyên giao dịch, chuyển tiền ngoài hệ thống Shopee (SP-35).
+- **Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:**
+  - *Người mua* — sai "đủ điều kiện" → mất công, có thể mất phí ship hoặc lỡ hạn 15 ngày (SP-11); sai "chưa đủ" → bỏ mất khoản hoàn tiền hợp lệ. *Chặn:* bước ② hỏi lại khi thiếu thông tin; bước ④ chỉ được dùng điều khoản có mã; bước ⑤ hạ về "Không chắc cần CSKH" khi thiếu nhãn / thiếu mã / mã không có thật; bước ⑥ người mua tự đọc và tự gửi, kèm mã `SP-xx` để tự đối chiếu.
+  - *Người bán* — nếu AI xúi khai sai lý do "hàng lỗi" thì người bán chịu phí ship chiều trả oan (SP-26). *Chặn:* bước ① chặn yêu cầu gian lận; prompt cấm hướng dẫn khai sai (B09 đạt ở lượt 2).
+  - **Lỗ hổng còn lại (từ lượt 2, `eval/report.md` mục 4):** bước ⑤ chỉ kiểm mã **có tồn tại**, chưa kiểm mã **đúng ý** — model có thể gán sai nội dung cho mã có thật (B14 gán nhầm SP-27, B24 trích SP-28 thay vì SP-30); và có thể bỏ sót cảnh báo giao dịch ngoài Shopee dù đã có SP-35 trong ngữ cảnh (B23). Vì vậy output luôn nhắc người mua tự mở điều khoản để đối chiếu và tự quyết định gửi.
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
-- Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
+- **Phân công có tên** (theo chặng; chi tiết từng việc ở issue #1–#12 trên GitHub):
+
+  | Người | CP1–CP2 (27/11) | CP3 (đến 10:00 28/11) | CP4 (đến 14:30 28/11) |
+  |---|---|---|---|
+  | **Nguyễn Trọng Lâm** (đội trưởng) | Chốt lát cắt, `canvas.md`, `spec.md` §1 §4 §7 (chuẩn "đạt"), `README.md` | `spec.md` §0 (ảnh app) §3 (thử trợ lý AI Shopee), changelog §10, `docs/ai-usage.md`, nộp CP3 | `spec.md` §7 §9 §10, slide, video demo dự phòng, nộp CP4 |
+  | **Nguyễn Đức Hiếu** | `data/shopee_policy.md`, `data/DATA_CARD.md`, khung `codebase/` (`tra_dieu_khoan`, workflow 6 bước), chấm thử 5 output | Nối Groq, chạy lượt 1 | Sửa 3 nhóm lỗi lượt 1 (bước ②, ⑤), chạy lượt 2 |
+  | **Vũ Xuân Hiếu** | Giả thuyết, khảo sát n = 24, `evidence/data-mining.md` | Phỏng vấn P1–P3, `evidence/summary.md`, `cost/personas.yaml`, `simulate --try` | Mô phỏng chi phí ≥50 phiên, `cost/cost-estimate.md`, `spec.md` §8, người dùng thử |
+  | **Nguyễn Mạnh Quân** | `eval/benchmark.csv` 15 câu, `eval/metric_spec.yaml`, `eval/README.md` mục 1–4 | Mở rộng 24 câu và khoá, chấm lượt 1, `eval/report.md` | Chấm lượt 2, `eval/report.md` mục 3–4, `eval/README.md` mục 5–6 |
+
+  Cặp kiểm chéo: Lâm ↔ Quân chốt chuẩn "đạt" và metric; Đức Hiếu chấm thử output Quân chọn; Xuân Hiếu lấy tỉ lệ đạt lượt 2 từ Quân để tính chi phí.
+- **Dùng AI vào việc gì** (chi tiết `docs/ai-usage.md`): Claude Code viết bản đầu `codebase/agent.py`, `codebase/tools.py`, `data/shopee_policy.md` và nháp nhiều mục `spec.md`; Codex nối Groq. Gemini (Antigravity) hỗ trợ chuẩn hoá bộ câu thử, rà câu hỏi khảo sát và định dạng Markdown; Claude chấm thử 5 output CP2. Người kiểm: Đức Hiếu chạy và sửa code qua 2 lượt, Quân đọc sửa từng câu thử và tự chấm 24/24 câu mỗi lượt, Lâm duyệt `spec.md`. Không dùng AI để tạo người được phỏng vấn, trích dẫn hay câu trả lời khảo sát.
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
 **CP2 → CP4** (vd thu hẹp lát cắt, hỏi thêm người dùng, lần cải tiến trước lượt 2)
@@ -208,6 +229,9 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không dù
 | 28/11/2026 09:38 (GMT+7) | Bước ⑤ đọc nhãn kết luận có Markdown in đậm; vẫn kiểm mã điều khoản | Lượt 1 B09, B15 bị chuyển sai sang fallback do `**KẾT LUẬN:**`. |
 | 28/11/2026 09:38 (GMT+7) | Bước ② bổ sung nhận diện khác mô tả, phí trả hàng, người bán im lặng và kênh liên lạc ngoài Shopee | B18, B23, B24 thiếu điều khoản SP-07, SP-35, SP-23 hoặc SP-30; dùng từ khóa theo chủ đề, không so khớp nguyên câu thử. |
 | 28/11/2026 09:38 (GMT+7) | Bước ② xét bằng chứng theo từng vế, giữ thông tin có bằng chứng khi một vế khác bị phủ định | B21, B18 có bằng chứng đã ghi nhận nhưng một chi tiết khác chưa quay. |
+| 28/11/2026 09:39 (GMT+7) | Chạy **lượt 2** `run-2@20261128-093903` (cùng model `openai/gpt-oss-20b`, cùng 24 câu) → `eval/run-2.csv`, `traces/run-2.jsonl`; 0 lỗi kỹ thuật | Đo lại sau một lần cải tiến nhắm 6/6 câu trượt lượt 1 |
+| 28/11/2026 10:16 (GMT+7) | Chấm lượt 2 → **19/24 (79%)**: thuong 8/8 · kho 8/13 · tu_choi 3/3 — **vẫn chưa đạt chuẩn** (thiếu 1 câu); B09, B18 từ trượt → đạt, **B14 tệ đi** (đạt → trượt); ghi `eval/report.md` mục 1, 3, 4 và `eval/README.md` | Chuẩn "đạt" và `expected` giữ nguyên; chỉ điền cột `pass`, `ghi_chu` |
+| 28/11/2026 (sau 10:16) | `spec.md` §7 ghi kết quả lượt 2; viết §9 Rủi ro & an toàn (gồm lỗ hổng còn lại từ lượt 2: mã có thật nhưng sai ý ở B14, B24; thiếu cảnh báo SP-35 ở B23) và §10 phân công, dùng AI | Hoàn thiện §0–§10 cho CP4 |
 |  |  |  |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
