@@ -70,7 +70,7 @@ ul{margin:8px 0;padding-left:24px}li{margin:6px 0}
     <div class="st"><b>① Chặn phạm vi</b>code · sàn khác, tấn công, làm giả</div>
     <div class="st"><b>② Tách thông tin</b>code · ngày, lỗi, bằng chứng</div>
     <div class="st"><b>③ tra_dieu_khoan</b>đọc 35 điều khoản SP-01…35</div>
-    <div class="st ai"><b>④ Model quyết định</b>1 lời gọi · gpt-oss-20b</div>
+    <div class="st ai"><b>④ Model quyết định</b>1 lời gọi · gpt-6-luna</div>
     <div class="st"><b>⑤ Kiểm căn cứ</b>code · thiếu mã → "Không chắc"</div>
     <div class="st hu"><b>⑥ Người mua</b>tự đọc, tự sửa, tự gửi</div>
   </div>
@@ -96,41 +96,41 @@ ul{margin:8px 0;padding-left:24px}li{margin:6px 0}
 </section>
 
 <section class="s">
-  <h2>Đánh giá: <span class="k">75% → 79%</span>, còn thiếu 1 câu để đạt chuẩn</h2>
+  <h2>Đánh giá: model chính <span class="k">gpt-6-luna</span> — lượt 1 → lượt 2</h2>
   <div class="row">
     <div style="flex:1.2">
       <table>
-        <tr><th></th><th>Lượt 1</th><th>Lượt 2</th></tr>
-        <tr><td>Tổng (chuẩn ≥ 80%)</td><td>18/24 · 75%</td><td><b>19/24 · 79%</b></td></tr>
-        <tr><td>thuong</td><td>7/8</td><td><b>8/8</b></td></tr>
-        <tr><td>kho</td><td>8/13</td><td>8/13</td></tr>
-        <tr><td>tu_choi (chuẩn 100%)</td><td>3/3</td><td>3/3</td></tr>
-        <tr><td>Mã điều khoản bịa</td><td>0</td><td>0</td></tr>
+        <tr><th></th><th>Lượt 1<br><span style="font-weight:400;font-size:13px">trước cải tiến</span></th><th>Lượt 2<br><span style="font-weight:400;font-size:13px">sau cải tiến</span></th><th style="color:#888">Groq (CP3)<br><span style="font-weight:400;font-size:13px">lượt 1 → 2</span></th></tr>
+        <tr><td>Tổng (chuẩn ≥ 80%)</td><td>__/24 · __%</td><td><b>__/24 · __%</b></td><td style="color:#888">18 → 19/24</td></tr>
+        <tr><td>thuong</td><td>__/8</td><td>__/8</td><td style="color:#888">7 → 8/8</td></tr>
+        <tr><td>kho</td><td>__/13</td><td>__/13</td><td style="color:#888">8 → 8/13</td></tr>
+        <tr><td>tu_choi (chuẩn 100%)</td><td>__/3</td><td>__/3</td><td style="color:#888">3 → 3/3</td></tr>
       </table>
-      <div style="font-size:14px;color:#666;margin-top:6px">run-1@20261127-222913 · run-2@20261128-093903 · openai/gpt-oss-20b (Groq)</div>
+      <div style="font-size:14px;color:#666;margin-top:6px">gpt-6-luna (OpenAI): run-3@20261128-105642 · run-4@20261128-105932 — <b style="color:#ee4d2d">⚠ điền số sau khi Quân chấm</b><br>Groq openai/gpt-oss-20b: run-1@20261127-222913 · run-2@20261128-093903</div>
     </div>
     <div style="flex:1;font-size:18px">
       <b>Dữ liệu:</b> 35 điều khoản viết lại từ chính sách Shopee (hiệu lực 06/11/2026)<br>
       <b>Bộ câu thử:</b> 24 câu, 19/24 từ người dùng / data thật<br>
       <b>Metric:</b> ket_luan_dung · trich_dieu_khoan · tu_choi_dung<br><br>
-      <b>Cải tiến:</b> sửa bước ② (từ khoá, phủ định một phần) và ⑤ (đọc <code>**KẾT LUẬN:**</code>) → B09, B18 qua; <b>B14 tệ đi</b><br>
-      <b>Lỗi còn lại:</b> 5 câu kho — model trích mã có thật nhưng sai ý (B14, B24), bỏ sót cảnh báo giao dịch ngoài Shopee (B23)
+      <b>Cải tiến (giữa lượt 1 và 2):</b> sửa bước ② (từ khoá, phủ định một phần) và ⑤ (đọc <code>**KẾT LUẬN:**</code>)<br>
+      <b>Trên Groq:</b> B09, B18 qua; B14 tệ đi; 5 câu kho còn trượt — mã có thật nhưng sai ý (B14, B24), bỏ sót cảnh báo ngoài Shopee (B23)<br>
+      <b>Vì sao đổi model:</b> Groq miễn phí giới hạn 8.000 token / phút → lỗi 429
     </div>
   </div>
-  <div class="src">Nguồn: eval/report.md, eval/README.md, eval/run-1.csv, eval/run-2.csv</div>
+  <div class="src">Nguồn: eval/report.md, eval/README.md, eval/run-1…4.csv</div>
   <div class="n">5</div>
 </section>
 
 <section class="s">
   <h2>Chi phí khi dùng thật</h2>
   <div class="row">
-    <div class="box"><b>Chi phí / phiên (chạy thử 10 phiên)</b><div class="big" style="font-size:48px">18–322 ₫</div>tuỳ model giá rẻ → mạnh</div>
-    <div class="box"><b>/ tháng — cơ sở 20.000 người</b><div class="big" style="font-size:48px">~0,19–3,3 tr ₫</div>3 kịch bản: 5.000 · 20.000 · 50.000 người</div>
-    <div class="box"><b>Token / phiên</b><div class="big" style="font-size:48px">~1,9–4 nghìn</div>đo trên openai/gpt-oss-20b</div>
+    <div class="box"><b>Chi phí model / phiên</b><div class="big" style="font-size:48px">≈ 24 ₫</div>$0.00096 · gpt-6-luna, đo 50/50 phiên</div>
+    <div class="box"><b>/ tháng — thấp · cơ sở · cao</b><div class="big" style="font-size:40px">61k · 244k · 611k ₫</div>5.000 · 20.000 · 50.000 người</div>
+    <div class="box"><b>/ người / tháng (cơ sở)</b><div class="big" style="font-size:48px">≈ 12 ₫</div>token / phiên ~1,9k – 5,7k theo persona</div>
   </div>
-  <p style="margin-top:22px;background:#fff4e5;border-radius:8px;padding:12px 16px;font-size:17px"><b>⚠ Cập nhật trước khi trình bày:</b> số trên là lượt <code>simulate --try</code> (10 phiên, tỉ lệ đạt lượt 1). Thay bằng bảng của bản ≥ 50 phiên dùng tỉ lệ đạt lượt 2 trong <code>cost/cost-estimate.md</code> (Vũ Xuân Hiếu).</p>
-  <p style="font-size:18px">So với impact: mỗi lần dùng tiết kiệm phần lớn ~21 phút tìm hiểu, trong khi chi phí model tính bằng vài chục đến vài trăm đồng.</p>
-  <div class="src">Nguồn: cost/simulate-try-summary.md · cost/personas.yaml · spec.md §2, §8</div>
+  <p style="margin-top:22px;background:#fff4e5;border-radius:8px;padding:12px 16px;font-size:17px"><b>⚠ Lưu ý:</b> chi phí / phiên và / tháng đo thật trên gpt-6-luna. <b>Chi phí / task thành công</b> trong <code>cost/cost-estimate.md</code> đang chia cho tỉ lệ đạt 79% của Groq — cập nhật bằng tỉ lệ đạt của <code>run-4</code> sau khi chấm.</p>
+  <p style="font-size:18px">So với impact: người mua đang mất ~21 phút mỗi lần; chi phí model chỉ vài chục đồng mỗi phiên.</p>
+  <div class="src">Nguồn: cost/simulate-3-summary.md (simulate-3@20261128-110615) · cost/cost-estimate.md · spec.md §2, §8</div>
   <div class="n">6</div>
 </section>
 
@@ -138,9 +138,9 @@ ul{margin:8px 0;padding-left:24px}li{margin:6px 0}
   <h2>Kết luận: <span class="k">ITERATE</span> — chưa đủ chuẩn để đưa vào dùng</h2>
   <ul style="font-size:22px">
     <li><b>Pain có thật và đủ lớn:</b> 14/24 gặp hàng lỗi, 12/24 không được hoàn đủ, ~21 phút mỗi lần (trang 1–2)</li>
-    <li><b>Phần an toàn đã chắc:</b> tu_choi 3/3 cả hai lượt, 0 mã điều khoản bịa, câu thường 8/8 (trang 5)</li>
-    <li><b>Chưa đạt chuẩn:</b> 79% &lt; 80%; câu khó chỉ 8/13 — đúng loại câu người mua cần nhất (trang 5)</li>
-    <li><b>Chi phí không phải vấn đề:</b> vài chục – vài trăm đồng mỗi phiên (trang 6)</li>
+    <li><b>Phần an toàn đã chắc (Groq):</b> tu_choi 3/3 cả hai lượt, 0 mã điều khoản bịa, câu thường 8/8 (trang 5)</li>
+    <li><b>Chưa đạt chuẩn trên Groq:</b> 79% &lt; 80%; câu khó chỉ 8/13. Model chính gpt-6-luna: <b>__/24</b> <span style="color:#ee4d2d;font-size:16px">(điền sau khi chấm run-4)</span> (trang 5)</li>
+    <li><b>Chi phí không phải vấn đề:</b> ≈ 24 ₫ mỗi phiên, ≈ 12 ₫ / người / tháng trên gpt-6-luna (trang 6)</li>
   </ul>
   <p style="font-size:22px;margin-top:20px">→ Không dừng; sửa nhóm câu khó rồi đo lại trên cùng 24 câu, cùng chuẩn.</p>
   <div class="n">7</div>

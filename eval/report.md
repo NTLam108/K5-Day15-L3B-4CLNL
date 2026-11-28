@@ -10,8 +10,12 @@
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-222913` | 18/24 | 75% | 7/8 (88%) | 8/13 (62%) | 3/3 (100%) | chưa đạt (<80%; `tu_choi` đạt 100%) |
 | 2 | `run-2@20261128-093903` | 19/24 | 79% | 8/8 (100%) | 8/13 (62%) | 3/3 (100%) | chưa đạt (<80%, thiếu 1 câu; `tu_choi` đạt 100%) |
+| 1 · model chính | `run-3@20261128-105642` | __/24 | __% | __/8 | __/13 | __/3 | *(chờ chấm)* |
+| 2 · model chính | `run-4@20261128-105932` | __/24 | __% | __/8 | __/13 | __/3 | *(chờ chấm)* |
 
-- Model lượt 1 & lượt 2: `openai/gpt-oss-20b` (qua Groq API), 0 lỗi kỹ thuật, 0 `trace_mismatch`.
+- Model lượt 1 & lượt 2 (dòng 1–2): `openai/gpt-oss-20b` (qua Groq API), 0 lỗi kỹ thuật, 0 `trace_mismatch`.
+- **Model chính từ CP4 (dòng "model chính"): `gpt-6-luna` qua OpenAI** — `run-3` chạy code **trước** cải tiến (bản `84e6a0e`, tương ứng lượt 1), `run-4` chạy code **sau** cải tiến (bản `7029863`, tương ứng lượt 2); cùng 24 câu, cùng chuẩn "đạt", 0 lỗi kỹ thuật. Đổi model vì Groq miễn phí giới hạn 8.000 token / phút (lỗi 429). Lượt Groq giữ nguyên làm lịch sử, không xoá.
+- *Khi chấm xong `run-3`, `run-4`:* điền 2 dòng trên, rồi cập nhật mục 3 (cải tiến: so `run-3` → `run-4` trên cùng model) và mục 4, `spec.md` §7, `cost/cost-estimate.md` (tỉ lệ đạt của chính `gpt-6-luna` thay cho 79% của Groq), slide 5–6.
 - Chi tiết theo 3 metric ở lượt 1: `ket_luan_dung` **18/21 (85.7%)** khớp nhãn bề mặt (**17/21 = 81.0%** thực chất nếu trừ `B15` bị lỗi parser ép về fallback trùng nhãn) · `trich_dieu_khoan` **21/21 (100%)** câu có kết luận đều trích ≥1 mã hợp lệ trong `SP-01`..`SP-35` (0 mã bịa) · `tu_choi_dung` **3/3 (100%)** chặn bằng code ở bước ①. Kết hợp đủ `pass_criterion` từng câu đạt **18/24 (75%)** (`B23`, `B24` đúng nhãn nhưng trượt ý cốt lõi `SP-35` và `SP-23`/`SP-30`).
 - Chi tiết theo 3 metric ở lượt 2: `ket_luan_dung` **18/21 (85.7%)** thực chất (0 câu bị fallback oan; sai nhãn ở `B15`, `B21`, `B24`) · `trich_dieu_khoan` **21/21 (100%)** trích ≥1 mã hợp lệ trong `SP-01`..`SP-35` (0 mã bịa; lưu ý `B14` gán sai nội dung `SP-27` và `B24` trích nhầm `SP-28` cho `SP-30`) · `tu_choi_dung` **3/3 (100%)**. Cả 3 metric riêng đều vượt ngưỡng, nhưng kết hợp đủ `pass_criterion` từng câu đạt **19/24 (79%)** (`B14` và `B23` đúng nhãn nhưng trượt ý cốt lõi).
 - Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
